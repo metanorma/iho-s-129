@@ -1,0 +1,6 @@
+
+== Data Capture and Classification
+
+The S-129 Data Classification and Encoding Guide (DCEG) gives guidance for how to
+encode UKCM datasets for the various stages of a journey to and through a UKCM Operational
+Area. The document can be found in <<annex-a>>.

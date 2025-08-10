@@ -1,0 +1,406 @@
+
+[[annex-d]]
+[appendix,obligation="informative"]
+== Portrayal Catalogue
+
+The Portrayal Catalogue (PC) provides those portrayal functions for S-129 UKCM with
+GML as a machine-readable form to display the features of the data model. This PC
+is verified by the PCB (Portrayal Catalogue Builder) published by KHOA on behalf
+of IHO.
+
+=== Catalogue header information
+
+Name: Portrayal Catalogue for S-129
+
+Scope: Dynamic under keel clearance management information
+
+Field of Application: Under keel clearance management
+
+Version Number: 2.0.0
+
+Version date: 2024-10-09
+
+Producer information:
+
+Individual name:
+
+Organisation name: International Hydrographic Organization
+
+Position Name:
+
+Contact Information:
+
+Phone: +
+Address:
+
+[cols="6",options="header,unnumbered"]
+|===
+| deliveryPoint | city | administrativeArea | postalCode | country | electronicMailAddress
+
+| International Hydrographic Organization, 4 quai Antoine 1er, B.P. 445 | | | MC 98011 MONACO CEDEX | |
+|===
+
+Online resource information:
+
+Hours of Service:
+
+Contact Instructions:
+
+Role: user
+
+Classification: unclassified
+
+<<<
+
+=== Definition Sources
+
+No definition sources in catalogue.
+
+<<<
+
+=== Color Profiles
+
+==== UKC color profile
+
+Name: UKC color profile
+
+Description: Color profile for UKC information
+
+ID: UKCColorProfile
+
+Language: en (English)
+
+Remarks:
+
+File Name: colorProfile.xml
+
+File Type: ColorProfile
+
+File Format: XML
+
+<<<
+
+=== Symbols
+
+==== UKCCONPT
+
+Name: UKCCONPT
+
+Description: Symbol for Under Keel Clearance Control Point
+
+ID: UKCCONPT
+
+Language: en (English)
+
+Remarks:
+
+File Name: UKCCONPT.svg
+
+File Type: Symbol
+
+File Format: SVG
+
+==== EMUKCARE
+
+Name: EMUKCARE
+
+Description: Embedded complex line symbol for Under Keel Clearance Plan Area
+
+ID: EMUKCARE
+
+Language: en (English)
+
+Remarks:
+
+File Name: EMUKCARE.svg
+
+File Type: Symbol
+
+File Format: SVG
+
+==== EMAREMG1
+
+Name: EMAREMG1
+
+Description: Embedded symbol
+
+ID: EMAREMG1
+
+Language: en (English)
+
+Remarks:
+
+File Name: EMAREMG1.svg
+
+File Type: Symbol
+
+File Format: SVG
+
+==== DIAMOND1P
+
+Name: DIAMOND1P
+
+Description: area of depth less than the safety contour
+
+ID: DIAMOND1P
+
+Language: en (English)
+
+Remarks: adopted for UnderKeelClearanceNonNavigableArea portrayal to enhance discernibility
+from UnderKeelClearanceAlmostNonNavigableArea in night mode display
+
+File Name: DIAMOND1P.svg
+
+File Type: Symbol
+
+File Format: SVG
+
+=== Line styles
+
+==== UKCARE01
+
+Name: UKCARE01
+
+Description: Boundary of Under Keel Clearance Plan Area
+
+ID: UKCARE01
+
+Language: en (English)
+
+Remarks:
+
+File Name: EMAREMG1.xml
+
+File Type: LineStyle
+
+File Format: XML
+
+<<<
+
+=== Area Fills
+
+(No description)
+
+<<<
+
+=== Fonts
+
+(No description)
+
+<<<
+
+=== Viewing Group
+
+==== UKC Plan Area
+
+Name: UKC Plan Area
+
+Description: Toggles visibility of UKC Plan Area features
+
+ID: 29010
+
+Language: en (English)
+
+==== UKC Almost Non-Navigable Area
+
+Name: UKC Almost Non-Navigable Area
+
+Description: Toggles visibility of UKC Almost Non-Navigable Area features
+
+ID: 29020
+
+Language: en (English)
+
+==== UKC Non-Navigable Area
+
+Name: UKC Non-Navigable Area
+
+Description: Toggles visibility of UKC Non-Navigable Area features
+
+ID: 29030
+
+Language: en (English)
+
+==== UKC Control Point
+
+Name: UKC Control Point
+
+Description: Toggles visibility of UKC Control Point features
+
+ID: 29050
+
+Language: en (English)
+
+==== UKC Planned Route
+
+Name: UKC Planned Route
+
+Description: Toggles visibility of UKC Planned Route
+
+ID: 29060
+
+Language: en (English)
+
+==== UKC Information Box
+
+Name: UKC Information Box
+
+Description: Toggles visibility of UKC Information Box
+
+ID: 29070
+
+Language: en (English)
+
+==== UKC Non-Navigable Area Pattern
+
+Name: UKC Non-Navigable Area Pattern
+
+Description: Toggles visibility of UKC Non-Navigable Area pattern
+
+ID: 29040
+
+Language: en (English)
+
+=== Viewing Group Layer
+
+==== UKCViewingGroupLayer
+
+Name: UKC Viewing Group Layer
+
+Description: Contains UKC Viewing Groups
+
+ID: UKCViewingGroupLayer
+
+Language: en (English)
+
+==== UKCNonNavigableAreaPattern
+
+Name: UKC Non-Navigable Area Pattern
+
+Description: UKC Non-Navigable Area Pattern
+
+ID: UKCNonNavigableAreaPattern
+
+Language: en (English)
+
+=== Context
+
+==== PlainBoundaries
+
+Name: Plain boundaries
+
+Description: Line symbol style
+
+ID: PlainBoundaries
+
+Language: en (English)
+
+=== Rules
+
+==== Main
+
+Name: main
+
+Description: Top level rule
+
+ID: main
+
+Remarks:
+
+File Name: main.xsl
+
+File Type: Rule
+
+File Format: XSLT
+
+Rule Type: TopLevelTemplate
+
+==== UnderKeelClearancePlanArea
+
+Name: UnderKeelClearancePlanArea
+
+Description: Rules for feature type UnderKeelClearancePlanArea
+
+ID: UnderKeelClearancePlanArea
+
+Remarks:
+
+File Name: UnderKeelClearancePlanArea.xsl
+
+File Type: Rule
+
+File Format: XSLT
+
+Rule Type: SubTemplate
+
+==== Control Point
+
+Name: ControlPoint
+
+Description: Rules for feature type UnderKeelClearanceControlPoint
+
+ID: ControlPoint
+
+Remarks:
+
+File Name: ControlPoint.xsl
+
+File Type: Rule
+
+File Format: XSLT
+
+Rule Type: SubTemplate
+
+==== Information Box
+
+Name: InformationBox
+
+Description: Rules for Information Box
+
+ID: InformationBox
+
+Remarks:
+
+File Name: InformationBox.xsl
+
+File Type: Rule
+
+File Format: XSLT
+
+Rule Type: SubTemplate
+
+==== Almost Non Navigable Area
+
+Name: AlmostNonNavigableArea
+
+Description: Rules for feature type UnderKeelClearanceAlmostNonNavigableArea
+
+ID: AlmostNonNavigableArea
+
+Remarks:
+
+File Name: AlmostNonNavigableArea.xsl
+
+File Type: Rule
+
+File Format: XSLT
+
+Rule Type: SubTemplate
+
+==== Non Navigable Area
+
+Name: NonNavigableArea
+
+Description: Rules for feature type UnderKeelClearanceNonNavigableArea
+
+ID: NonNavigableArea
+
+Remarks:
+
+File Name: NonNavigableArea.xsl
+
+File Type: Rule
+
+File Format: XSLT
+
+Rule Type: SubTemplate

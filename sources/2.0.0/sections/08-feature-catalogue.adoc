@@ -1,0 +1,115 @@
+
+== Feature Catalogue
+
+[[sec_8.1]]
+=== Introduction
+
+As outlined in ISO 19110, catalogues contain definitions and descriptions of the
+spatial object types, their attributes and associated components occurring in one
+or more spatial datasets, together with any operations that may be applied.
+
+A Feature Catalogue (FC) refers to a description of an abstraction of reality that
+may be used to depict one or more geographic datasets. The FC for S-129 uses GML
+to describe the details of the application schema contained in <<sec_7.2>> and is
+verified by the IHO's Feature Catalogue Builder (FCB).
+
+The FC describes the features, information types, attributes, attribute values, associations
+and roles which may be in a UKCM dataset. The S-129 FC is described in XML which
+conforms to the <<S_100>> XML Feature Catalogue Schema.
+
+Feature Catalogueand can be downloaded from the IHO GI Registry website (https://registry.iho.int/productspec/list.do).
+
+[[sec_8.2]]
+=== Feature Types
+
+Feature types contain descriptive attributes that characterize real-world entities.
+The word 'feature' may be used in one of two senses -- feature type and feature instance.
+A feature type is a class and is defined in a Feature Catalogue. A feature instance
+is a single occurrence of the feature type and represented as an object in a dataset.
+A feature instance is located by a relationship to one or more spatial instances.
+In this specification, a feature instance may not exist without referencing a spatial
+instance.
+
+==== Geographic
+
+A Geographic (Geo) feature type carries the descriptive characteristics of a real-world
+entity. A Geo feature type forms the principal content of the dataset and is fully
+defined by its associated attributes and information types.
+
+==== Meta
+
+Meta features contain information about other features within a dataset. Information
+defined by meta features override the default metadata values defined by the dataset
+descriptive records. Meta attribution on individual features overrides attribution
+on meta features.
+
+Meta features must be used to their maximum extent to reduce meta attribution on
+individual features.
+
+==== Feature Relationship
+
+A feature relationship links instances of one feature type with instances of the
+same or a different feature type. Although there are four types of defined feature
+relationships in <<S_100>>, S-129 uses only one of these -- composition.
+
+===== Aggregation
+
+An aggregation is a relationship between two or more feature types where the aggregation
+feature is made up of component features.
+
+===== Composition
+
+A composition is a strong aggregation. In a composition, if a container feature is
+deleted then all its component features are deleted as well.
+
+[example]
+A UKC plan feature may comprise multiple UKC non-navigable area features
+to indicate unsafe areas, computed based on information as contained in the UKC plan
+feature. Therefore, if a UKC plan feature is deleted, its component UKC non-navigable
+area features must also be deleted as they make up the UKC non-navigable area/UKC plan Composition.
+
+==== Attributes
+
+<<S_100>> defines attributes as either simple or complex.
+
+===== Simple attributes
+
+S-129 uses five types of simple attributes, as listed in <<table_8-1>>.
+
+[[table_8-1]]
+.Attribute types
+[cols="112,487",options="header,unnumbered"]
+|===
+| Type | Definition 
+
+| Enumeration      | A fixed list of valid identifiers of named literal values.
+| Real             | A signed Real (floating point) number consisting of a mantissa and an exponent.
+| Integer          | A signed integer number. The representation of an integer is encapsulation and usage dependent.
+| Character String | An arbitrary-length sequence of characters including accents and special characters
+from a repertoire of one of the adopted character sets.
+| Date and Time    | A DateTime is a combination of a date and a time type. Character
+encoding of a DateTime must follow <<ISO_8601_1_2019>> and <<ISO_8601_2_2019>>.
+
+|===
+
+===== Complex attributes
+
+Complex attributes are aggregations of other attributes that are either simple or
+complex. The aggregation is defined by means of attribute bindings. S-129 includes
+the following complex attributes:
+
+* fixedTimeRange -- contains simple attributes of "timeStart" and "timeEnd"
+* featureName -- contains simple attributes of "name", "language", and "nameUsage"
+
+[[figure-8-1]]
+.Complex Attributes used in S-129
+image::figure-8-1.png[]
+
+[[sec_8.3]]
+=== Units of measure
+
+The following units of measure are used in the S-129 Product Specification:
+
+* Ship draught in metres
+* Ship speed in metres per second
+* UKC above the established UKC Limit, in metres

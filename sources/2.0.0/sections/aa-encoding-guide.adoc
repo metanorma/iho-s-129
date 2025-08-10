@@ -1,0 +1,561 @@
+
+[[annex-a]]
+[appendix,obligation="informative"]
+== Data Classification and Encoding Guide
+
+=== UnderKeelClearancePlan
+
+[cols="a,a,a,a,a",options="unnumbered"]
+|===
+5+| *[underline]#IHO Definition:#* UKC plans are specific to a ship and a UKCM Operational
+Area. There are three kinds of plan: a Pre-plan, an Actual Plan and an Actual Update.
+5+| *S-129 Metadata Feature: UnderKeelClearancePlan*
+5+| *Super Type:*
+5+| *Primitive: surface*
+| _Real World_ 2+| _Paper Chart Symbol_ 2+| _ECDIS Symbol_
+
+h| S-129 Attribute h| S-57 Acronym h| Allowable Encoding Value h| Type h| Multiplicity
+
+| Generation Time      | | | DT | 0, 1
+| Vessel ID            | | | TE | 0, 1
+| Source Route Name    | | | TE | 0, 1
+| Source Route Version | | | IN | 0, 1
+| Maximum Draught      | | | RE | 0, 1
+
+| Under Keel Clearance Purpose |
+| 1: Pre Plan +
+2: Actual Plan +
+3: Actual Update
+| EN | 0, 1
+
+| Under Keel Clearance Calculation Requested |
+| 1: Time Window +
+2: Maximum Draught
+| EN | 0, 1
+
+| Interoperability Identifier | | | URN    | 0, 1
+| Fixed Time Range            | | | C      | 0, 1
+| Time Start                  | | | (S) DT | 0, 1
+| Time End                    | | | (S) DT | 0, 1
+
+5+| Introductory remarks.There are three kinds of UKC plans:
+
+* a Pre-plan is a set of tidal windows available for a ship to transit through a
+UKCM Operational Area, at a specified draught
+
+* an  Actual  Plan is specific to a ship and a UKCM Operational Area for a waterway,
+and contains a route defined by a set of geographical control points with time windows
+for each control point, and non-navigable and almost non-navigable areas, and
+
+* an  Actual  Update is a replacement Actual Plan.
+
+|===
+
+[cols="5",options="unnumbered"]
+|===
+5+h| [underline]#Feature/Information associations#
+.2+h| Type .2+h| Association Name 3+h| Association Ends
+h| Class h| Role h| Mult
+
+| Asso | UKC Plan Area Composition                 | *UnderKeelClearancePlanArea*               | theComponent | 0, ++*++
+| Asso | UKC Non Navigable Area Composition        | *UnderKeelClearanceNonNavigableArea*       | theComponent | 0, ++*++
+| Asso | UKC Almost Non Navigable Area Composition | *UnderKeelClearanceAlmostNonNavigableArea* | theComponent | 0, ++*++
+| Asso | UKC Control Point Composition             | *UnderKeelClearanceControlPoint*           | theComponent | 1, ++*++
+
+|===
+
+=== UnderKeelClearancePlanArea
+
+[cols="6",options="unnumbered"]
+|===
+6+| *[underline]#IHO Definition:#* The area for which an under keel clearance plan
+has been calculated for a particular vessel, for a particular passage.
+6+| *S-129 Geo Feature: UnderKeelClearancePlanArea*
+6+| *Super Type:*
+6+| *Primitive: noGeometry*
+| _Real World_ 2+| _Paper Chart Symbol_ 3+| _ECDIS Symbol_
+
+h| S-129 Attribute h| S-57 Acronym 2+h| Allowable Encoding Value h| Type h| Multiplicity
+
+| Scale Minimum | (SCAMIN) 2+| | IN | 0, 1
+| Interoperability Identifier | 2+| | URN | 0, 1
+
+6+| Introductory remarks. The Under Keel Clearance Plan area is spatial information
+which are included in Actual Plans and Actual Updates. It encompasses under keel
+clearance non-navigable areas, almost non-navigable areas, and navigable areas.
+
+|===
+
+[cols="5",options="unnumbered"]
+|===
+5+h| [underline]#Feature/Information associations#
+.2+h| Type .2+h| Association Name 3+h| Association Ends
+h| Class h| Role h| Mult
+
+| Comp | UKC Plan Area Composition | *UnderKeelClearancePlan* | theCollection | 1, 1
+|===
+
+=== UnderKeelClearanceNonNavigableArea
+
+[cols="6",options="unnumbered"]
+|===
+6+| *[underline]#IHO Definition:#* An area within a UKCM Operational Area where
+UKC for a specific ship is calculated to be less than the UKC limit for the waterway.
+6+| *S-129 Geo Feature: UnderKeelClearanceNonNavigableArea*
+6+| *Super Type:*
+6+| *Primitive: surface*
+| _Real World_ 2+| _Paper Chart Symbol_ 3+| _ECDIS Symbol_
+
+h| S-129 Attribute h| S-57 Acronym 2+h| Allowable Encoding Value h| Type h| Multiplicity
+
+| Scale Minimum | (SCAMIN) 2+| | IN | 0, 1
+| Interoperability Identifier | 2+| | URN | 0, 1
+
+6+| Introductory remarks. Non-navigable areas are spatial information which are included
+in Actual Plans and Actual Updates.
+
+|===
+
+[cols="5",options="unnumbered"]
+|===
+5+h| [underline]#Feature/Information associations#
+.2+h| Type .2+h| Association Name 3+h| Association Ends
+h| Class h| Role h| Mult
+| Comp | UKC Non Navigable Area Composition | *UnderKeelClearancePlan* | theCollection | 1, 1
+
+|===
+
+=== UnderKeelClearanceAlmostNonNavigableArea
+
+[cols="6",options="unnumbered"]
+|===
+6+| *[underline]#IHO Definition:#* An area within a UKCM Operational Area where
+UKC for a specific ship is calculated to be approaching the UKC limit for the waterway
+(within a specified value range).
+6+| *S-129 Geo Feature: UnderKeelClearanceAlmostNonNavigableArea*
+6+| *Super Type:*
+6+| *Primitive: surface*
+| _Real World_ 2+| _Paper Chart Symbol_ 3+| _ECDIS Symbol_
+
+h| S-128 Attribute h| S-57 Acronym 2+h| Allowable Encoding Value h| Type h| Multiplicity
+
+| Scale Minimum               | (SCAMIN) 2+| | IN  | 0, 1
+| Distance Above UKC Limit    |          2+| | RE  | 0, 1
+| Interoperability Identifier |          2+| | URN | 0, 1
+
+6+| Introductory remarks. Almost non-navigable areas are spatial information which
+are included in Actual Plans and Actual Updates.
+
+|===
+
+[cols="5",options="unnumbered"]
+|===
+5+h| [underline]#Feature/Information associations#
+.2+h| Type .2+h| Association Name 3+h| Association Ends
+h| Class h| Role h| Mult
+| Comp | UKC Almost Non Navigable Area Composition | *UnderKeelClearancePlan* | theCollection | 1, 1
+
+|===
+
+=== UnderKeelClearanceControlPoint
+
+[cols="6",options="unnumbered"]
+|===
+6+| *[underline]#IHO Definition:#* A geographical position denoting a point along
+a specific ship's route within a UKCM Operational Area where the ship must pass within
+a time range or time window (for example start and end time) calculated by the UKCM
+Service Provider.
+6+| *S-129 Geo Feature: UnderKeelClearanceControlPoint*
+6+| *Super Type:*
+6+| *Primitive: point*
+| _Real World_ 2+| _Paper Chart Symbol_ 3+| _ECDIS Symbol_
+
+h| S-129 Attribute h| S-57 Acronym 2+h| Allowable Encoding Value h| Type h| Multiplicity
+
+| Distance Above UKC Limit | 2+| | RE | 0, 1
+| Feature Name | 2+| | C | 0, 1
+| Language | 2+| | (S) TE | 1
+| Name | 2+| | (S) TE | 1
+
+| Name Usage |
+2+| 1: Default Name Display +
+2: Alternate Name Display
+| (S) EN | 0, 1
+
+| Expected Passing Time | 2+| | DT | 0, 1
+| Expected Passing Speed | 2+| | RE | 0, 1
+| Interoperability Identifier | 2+| | URN | 0, 1
+| Fixed Time Range | 2+| | C | 0, 1
+| Time Start | 2+| | (S) DT | 0, 1
+| Time End | 2+| | (S) DT | 0, 1
+
+6+| Introductory remarks. Control points are included in Actual Plans and Actual
+Updates.
+
+|===
+
+[cols="5",options="unnumbered"]
+|===
+5+h| [underline]#Feature/Information associations#
+.2+h| Type .2+h| Association Name 3+h| Association Ends
+h| Class h| Role h| Mult
+
+| Comp | UKC Control Point Composition | *UnderKeelClearancePlan* | theCollection | 1, 1
+|===
+
+=== Association Names
+
+==== UKC Plan Area Composition
+
+[cols="4",options="unnumbered"]
+|===
+4+| [underline]#IHO Definition:# A feature association for the binding between Under
+Keel Clearance Plan Area and Under Keel Clearance Plan
+
+Remarks:
+
+* No remarks.
+
+h| Role Type h| Role h| Associated With h| Multiplicity
+
+.2+| Composition | The Component | *Under Keel Clearance Plan Area* | 0, ++*++
+| The Collection | *Under Keel Clearance Plan* | 1, 1
+
+|===
+
+==== UKC Non Navigable Area Composition
+
+[cols="4",options="unnumbered"]
+|===
+4+| [underline]#IHO Definition:# A feature association for the binding between Under
+Keel Clearance Non Navigable Area and Under Keel Clearance Plan
+
+Remarks:
+
+* No remarks.
+
+| Role Type | Role | Associated With | Multiplicity
+.2+| Composition | The Component | *Under Keel Clearance Non Navigable Area* | 0, ++*++
+| The Collection | *Under Keel Clearance Plan* | 1, 1
+
+|===
+
+==== UKC Almost Non Navigable Area Composition
+
+[cols="4",options="unnumbered"]
+|===
+4+| [underline]#IHO Definition:# A feature association for the binding between Under
+Keel Clearance Almost Non Navigable Area and Under Keel Clearance Plan
+
+Remarks:
+
+* No remarks.
+
+h| Role Type h| Role h| Associated With h| Multiplicity
+
+.2+| Composition | The Component | *Under Keel Clearance Almost Non Navigable Area* | 0, ++*++
+| The Collection | *Under Keel Clearance Plan* | 1, 1
+
+|===
+
+==== UKC Control Point Composition
+
+[cols="4",options="unnumbered"]
+|===
+4+| [underline]#IHO Definition:# A feature association for the binding between Under
+Keel Clearance Control Point and Under Keel Clearance Plan
+
+Remarks:
+
+* No remarks.
+| *Role Type* | *Role* | *Associated With* | *Multiplicity*
+.2+| Composition | The Component | *Under Keel Clearance Control Point* | 1, ++*++
+| The Collection | *Under Keel Clearance Plan* | 1, 1
+
+|===
+
+=== Association Roles
+
+==== The Collection
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# A pointer to the aggregate in a whole-part relationship.
+
+|===
+
+==== The Component
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# A pointer to a part in a whole-part relationship
+
+|===
+
+=== Attribute and Enumerate Descriptions
+
+==== Generation Time
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# Time the UKC plan was generated.
+
+Remarks:
+
+* No remarks.
+
+|===
+
+==== Vessel ID
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# Vessel identifier, based on MRN. Can be either IMO
+or MMSI based.
+
+Remarks:
+
+* No remarks.
+
+|===
+
+==== Source Route Name
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# Identification of the route used as a source for the
+calculation.
+
+Remarks:
+
+May be provided through different methods, such as <<S_421>>, RTZ, or as generated
+by the UKCM service.If provided, for example, using <<S_421>>, the value of "S-421.Route.routeID"
+is used for machine-readable identification, or the value of "S-421.RouteInfo.routeInfoName"
+is used for human-readable identification.
+
+|===
+
+==== Source Route Version
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# Identification of the route used as a source for the
+calculation.
+
+Remarks:
+
+May be provided through different methods, such as S-421, RTZ, or as generated by
+the UKCM service.Can be used to supplement information provided by "sourceRouteName",
+especially if "sourceRouteName" provides insufficient route information.If provided,
+for example, using <<S_421>>, the value of "S-421.Route.routeEditionNo" is used.
+
+|===
+
+==== Maximum Draught
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# The maximum vessel draught in metres, used as base
+for the calculation.
+
+Remarks:
+
+* No remarks.
+
+|===
+
+==== Scale Minimum
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# The minimum scale at which the feature may be used
+for example for ECDIS presentation.
+
+Remarks:
+
+The modulus of the scale is indicated, that is 1:1 250 000 is encoded as 1250000.
+
+|===
+
+==== Language
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# The method of human communication, either spoken or
+written, consisting of the use of words in a structured and conventional way.
+
+Remarks: •No remarks.
+
+|===
+
+==== Name
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# The individual name of a feature.
+
+Remarks:
+
+* No remarks.
+
+|===
+
+==== Name Usage
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# Classification of the type and display level of the
+name of a feature in an end-user system.
+
+. *defaultNameDisplay*
++
+--
+[underline]#IHO Definition:# The name is intended to be displayed when the end-user
+system is set to the default name/text display setting.
+--
+
+. *alternateNameDisplay*
++
+--
+[underline]#IHO Definition:# The name is intended to be displayed when the end-user
+system is set to an alternate name/text display setting, for example an alternate
+language.
+--
+
+Remarks:
+
+* No remarks.
+
+|===
+
+==== Expected Passing Time
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# The expected passing time for a ship for a nominated
+Under Keel Clearance Control Point.
+
+Remarks:
+
+* No remarks.
+
+|===
+
+==== Expected Passing Speed
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# The expected passing speed for a ship for a nominated
+Under Keel Clearance Control Point.
+
+Remarks:
+
+* No remarks.
+
+|===
+
+==== Time Start
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# The start time of an active period.
+
+Remarks:
+
+* No remarks.
+
+|===
+
+==== Time End
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# The end time of an active period.
+
+Remarks:
+
+* No remarks.
+
+|===
+
+==== Distance Above UKC Limit
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# The distance of the lowest part of the ship's keel
+above the established Under Keel Clearance Limit for the waterway, expressed in metres.
+
+Remarks:
+
+* No remarks.
+
+|===
+
+==== Interoperability Identifier
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# A common unique identifier for entities which describe
+a single real-world feature, and which is used to identify instances of the feature
+in end-user systems where the feature may be included in multiple data product types.
+
+Remarks:
+
+* No remarks.
+
+|===
+
+==== Under Keel Clearance Purpose
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# The relevant phase of a UKC passage plan.
+
+. *Pre Plan*
++
+--
+[underline]#IHO Definition:# An indicative UKC plan that identifies potential sailing
+windows for a nominated vessel draught; days, weeks or months prior to the planned
+passage through the UKCM region.
+--
+
+. *Actual Plan*
++
+--
+[underline]#IHO Definition:# A detailed Under Keel Clearance plan that identifies
+sailing windows and no-go areas, integrating live weather data, hours or days prior
+to transiting the Under Keel Clearance Management region.
+--
+
+. *Actual Update*
++
+--
+[underline]#IHO Definition:# A near real-time, detailed, Under Keel Clearance plan
+that identifies sailing windows and no-go areas, using live weather, vessel position
+and traffic data, while the vessel is transiting the Under Keel Clearance Management
+region.
+--
+
+Remarks:
+
+* No remarks.
+
+|===
+
+==== Under Keel Clearance Calculation Requested
+
+[cols="a",options="unnumbered"]
+|===
+| [underline]#IHO Definition:# Indication of the aim of the UKC plan: To find the
+maximum safe vessel draught for transiting the UKCM region, or to find sailing windows
+for a nominated vessel draught.
+
+. **Time Window**IHO Definition: The available time window(s) for a given draught.
+
+. **Maximum Draught**IHO Definition:The maximum draught for a given time window.
+
+Remarks:
+
+* No remarks.
+
+|===

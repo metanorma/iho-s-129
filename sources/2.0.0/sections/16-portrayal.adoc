@@ -1,0 +1,10 @@
+
+== Portrayal
+
+The Portrayal Catalogue (PC) in <<annex-d>> defines how S-129 datasets are to be
+portrayed. The PC specifies the symbols and portrayal rules needed to display S-129
+features.
+
+The PC contains portrayal functions to map the features to symbols, symbol definitions,
+line styles, colour definitions, portrayal parameters and portrayal management concepts
+such as viewing groups.

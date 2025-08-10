@@ -1,0 +1,68 @@
+
+[[sec_2.1]]
+[bibliography]
+== Normative references
+
+// The following normative documents contain provisions that, through reference in this text, constitute provisions of this document.
+
+* [[[S_100,IHO S-100]]] IHO Universal Hydrographic Data Model, Edition 5.2.0 -- June 2024
+
+* [[[S_101,IHO S-101]]] IHO Electronic Navigational Chart (ENC) Product Specification
+
+* [[[S_102,IHO S-102]]] IHO Bathymetric Surface Product Specification
+
+* [[[S_104,IHO S-104]]] IHO Water Level Information for Surface Navigation Product Specification
+
+* [[[IEC_63173_1,IEC 63173-1]]] S-421 route plan based on S-100
+
+* [[[S_52,IHO S-52]]] IHO Specifications for Chart Content and Display Aspects of ECDIS Edition 6.1.1 -- October 2014 (with clarifications up to June 2015)
+
+* [[[ISO_10646_2017,ISO 10646:2017]]] Information technology -- Universal Coded Character Set (UCS) +Amd1 (2017) and Amd2 (2017)
+
+* [[[ISO_IEC_15948,ISO/IEC 15948]]] Information technology -- Computer graphics and image processing -- Portable Network Graphics (PNG): Functional specification
+
+* [[[ISO_19101_2014,ISO 19101:2014]]] Geographic information -- Reference model
+
+* [[[ISO_19103_2015,ISO 19103:2015]]] Geographic information -- Conceptual schema
+
+* [[[ISO_19107_2003,ISO 19107:2003]]] Geographic information -- Spatial schema
+
+* [[[ISO_19108_2002,ISO 19108:2002]]] Geographic information -- Temporal schema +Corr1 (2006)
+
+* [[[ISO_19109_2005,ISO 19109:2005]]] Geographic information -- Rules for application schema
+
+* [[[ISO_19110_2016,ISO 19110:2016]]] Geographic information -- Methodology for feature cataloguing
+
+* [[[ISO_19111_2003,ISO 19111:2003]]] Geographic information -- Spatial referencing by coordinates +Corr1 (2006)
+
+* [[[ISO_19115_1_2014,ISO 19115-1:2014]]] Geographic information -- Metadata Part 1: Fundamentals +Amd1 (2018)
+
+* [[[ISO_19117_2012,ISO 19117:2012]]] Geographic information -- Portrayal
+
+* [[[ISO_19125_1_2004,ISO 19125-1:2004]]] Geographic information -- Simple feature access -- Part 1: Common Architecture
+
+* [[[ISO_19136_2007,ISO 19136:2007]]] Geographic information -- Geography Markup Language (GML)
+
+* [[[ISO_19136_2_2015,ISO 19136-2:2015]]] Geographic information -- Geography Markup Language (GML)
+
+* [[[ISO_IEC_8211_1994,ISO/IEC 8211:1994]]] Information technology -- Specification for a data descriptive file for information exchange
+
+* [[[ISO_8601_1_2019,ISO 8601-1:2019]]] Date and time -- Representation for information interchange -- Part 1: Basic rules
+
+* [[[ISO_8601_2_2019,ISO 8601-2:2019]]] Date and time -- Representation for information interchange -- Part 2: Extensions
+
+* [[[ISO_639_2_1998,ISO 639-2:1998]]] Codes for the representation of names of languages -- Part 2: Alpha-3 code
+
+* [[[S_57,hidden(IHO S-57)]]]
+
+* [[[S_62,hidden(IHO S-62)]]]
+
+* [[[S_111,hidden(IHO S-111)]]]
+
+* [[[S_421,hidden(IHO S-421)]]]
+
+* [[[ISO_10646_1,hidden(ISO/IEC 10646-1)]]]
+
+* [[[ISO_19115_3,hidden(ISO 19115-3)]]]
+
+* [[[ISO_19125_1,hidden(ISO 19125-1)]]]

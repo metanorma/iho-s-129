@@ -1,0 +1,126 @@
+
+== Overview
+
+[[sec_1.1]]
+=== Introduction
+
+The IHO's <<S_100>> Working Group has prepared this document in response to a requirement
+to produce a dataset comprising Under Keel Clearance Management (UKCM) information
+that can be used as a Nautical Publication Information Overlay (NPIO) within an Electronic
+Chart Display and Information System (ECDIS). It is based on the IHO's S-100 framework
+specification and the ISO 19100 series of standards.
+
+S-129 is a vector Product Specification intended for encoding the UKCM information
+products for navigational purposes. Use of UKCM products conformant to this specification
+is not limited to navigation systems.
+
+[[figure-1-1]]
+.Example of S-129 UKCM information depiction
+image::figure-1-1.png[]
+
+A ship's master has an obligation under SOLAS regulation V/34 to plan their ship's
+voyage from berth to berth. This Product Specification enables UKCM information to
+be provided to users of a UKCM Service.
+
+[[sec_1.2]]
+=== Initial voyage planning to navigate through a UKCM Operational Area
+
+A ship planning its voyage needs to determine the time periods when there are suitable
+tidal conditions for it to transit a UKCM Operational Area. A UKCM Service Provider
+completes calculations based on a range of possible arrival times to determine a
+Pre-plan, which contains one or more time windows for a specified draught for a ship's
+master to choose from.
+
+[[sec_1.3]]
+=== Refined voyage planning to navigate through a UKCM Operational Area
+
+A ship's master selects a time window to transit through a UKCM Operational Area
+and advises the UKCM Service Provider. A ship also sends the UKCM Service Provider
+updated information about its particulars (for example stability and draught information).
+The UKCM Service Provider uses specialized ship and waterway-specific modelling that
+includes predicted and observed environmental conditions (for example tide, wind,
+swell, tidal stream, etc.) to generate an Actual Plan for a ship.
+
+An Actual Plan contains a route for the ship to take through the UKCM Operational
+Area and one or more control points. Control points are, in effect, waypoints and
+include time window information. An Actual Plan provides the ship with the necessary
+navigation information to safely pass through the UKCM Operational Area at a given
+time. The Actual Plan also includes any relevant non-navigable areas and almost non-navigable
+areas.
+
+To facilitate logistics planning, the Actual Plan can be shared with other parties,
+such as the ship's owners, management company, charterers, or the ship's agent at
+the relevant port. For example, it can be used to provide information that assists
+the ship's agent and relevant waterway authorities with making necessary bookings,
+such as for a pilot or for a berth.
+
+As the ship nears the UKCM Operational Area, the UKCM Service Provider checks the
+prevailing environmental conditions within the UKCM Operational Area and confirms
+the validity of the Actual Plan. The Actual Plan may alter due to changes in predicted
+weather forecasts, heights of tide, or the ship's particulars. The Actual Plan might
+be cancelled through replacement (using an Actual Update) when changes are required.
+This checking process allows the ship to manage its speed to meet the required time
+window to execute the Actual Plan.
+
+The Actual Update contains details of the earliest and latest times at which the
+ship can safely commence navigating shallow areas in the UKCM Operational Area while
+maintaining the required UKC (note that waterway authorities specify minimum UKC
+requirements for ships operating within a UKCM Operational Area). The Actual Update
+also includes any relevant non-navigable areas and almost non-navigable areas within
+the UKCM Operational Area.
+
+[[sec_1.4]]
+=== Voyage monitoring
+
+When the ship enters the UKCM Operational Area, the Actual Update can be displayed
+on the ship's navigation system. When a pilot is embarked, they will, generally,
+be using a Portable Pilot Unit (PPU) that also shows the ship's UKC plan (as this
+is also provided to the pilot by the UKCM Service Provider). Having the same information
+displayed on both the ship's navigation system and the pilot's PPU helps a ship's
+crew support the pilot navigating the ship through a UKCM Operational Area, while
+maintaining the required UKC.
+
+The UKCM Service Provider receives transmitted ship AIS data which allows them to
+send Actual Update datasets that contain the updated UKC plan metadata, non-navigable
+areas, almost non-navigable areas, and, if necessary, new versions of the route and
+control points, based on the ship's speed and the current environmental conditions.
+
+The ship's crew and the pilot (when embarked) are able to monitor, in real-time or
+near real-time, areas that have been calculated as non-navigable and almost non-navigable
+on their on-board navigation systems. The areas shown as almost non-navigable indicate
+to the ship's bridge team and the pilot (when embarked) the navigable areas that
+are close to becoming non-navigable at the time the ship would reach those locations.
+
+If a Vessel Traffic Service (VTS) is in operation for the UKCM Operational Area,
+the VTS can monitor the ship's transit and support navigation in accordance with
+the Actual Plan and/or Actual Update, which it has been provided with.
+
+In port settings, after the ship has completed its cargo operations, and if the ship's
+draught is such that the local area UKCM system must be used to exit the port, then
+the UKCM Service Provider would, similarly, be used to assist the ship's safe departure
+from the port through the UKCM Operational Area.
+
+[[sec_1.5]]
+=== Alerts and Indications
+
+The intent behind the inclusion of the S-129 product as an information layer within
+the IHO's <<S_100>> framework is to enhance navigational awareness without introducing
+additional complexity or operational risks. S-129, which provides mariners with a
+depiction of UKC 'go' and no-go' areas for a given route and time, offers valuable
+situational data that complements other navigational products like <<S_101>> and
+<<S_102>>/<<S_104>>. However, to ensure that this supplementary information does
+not inadvertently overload the user or cause unnecessary confusion, the S-129 layer
+is designed to be non-intrusive, providing visual information only, without triggering
+any alarms. This approach maintains a clear separation between crucial navigational
+alarms and non-essential data displays, ensuring that mariners can prioritize safety-critical
+alerts.
+
+The decision not to have S-129 trigger any alarms is also based on the need to preserve
+the integrity and reliability of existing Electronic Chart Display and Information
+System (ECDIS) alarms generated via S-101 for ENC data and the combined alarms produced
+from bathymetric and water level information in <<S_102>>/<<S_104>>. If the S-129
+layer were to issue alarms, it could interfere with or mask more critical alarms
+required for safe navigation, leading to potential navigational errors or delayed
+responses. Therefore, by providing S-129 as an information layer only, the system
+ensures a cleaner, more intuitive user experience without diminishing the operational
+importance of other safety-related ECDIS functions.

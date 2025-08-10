@@ -1,0 +1,53 @@
+
+[.preface]
+== Document Control
+
+Changes to this Product Specification are coordinated by the IHO S-100 Working Group.
+New editions will be made available via the IHO web site. Maintenance of the Product
+Specification must conform to IHO Resolution 2/2007 as amended.
+
+[cols="3,2,2,9",options="header,unnumbered"]
+|===
+| Version Number | Date | Author | Purpose
+
+| 0.1.0 draft |           | S-129 PT |  Initial draft
+| 0.2.0 draft | 18 Sep 18 | S-129 PT |  S-129 PT Meeting 3 (Busan, Republic of Korea) -- output draft
+| 0.3.0 draft | 29 Oct 18 | S-129 PT |  Post S-129 Meeting 3 with additional input from PT
+| 0.4.0 draft | 3 Dec 18  | S-129 PT |  For out of session review by other IHO working groups
+| 0.5.0 draft | 08 Feb 19 | S-129 PT |  For review by S-100WG and S-129 PT
+| 0.5.1       | 26 Feb 19 | S-129 PT |  Updates made at S-100WG meeting 27-29 Feb 19
+| 0.6.0       | 8 Mar 19  | S-129 PT | 
+Clean version post S-100WG meeting of 27-29 Feb 19 for final IHO Secretariat editorial makeover
+| 1.0.0       | Jun 2019  | S-129 PT |  First Edition for implementation and testing purposes
+| 1.1.0       | Nov 2023  | S-129 PT | 
+Revision based on 5th, 6th, and 7th S-129 PT meeting outcomes and PS validation in
+Tjeldsundet S-129 Operational Test. Other identified corrections also applied.
+| 1.2.0       | Jul 2024  | S-129 PT a|
+Revision based on changes in line with S-100 Edition 5.2.0, and clarified usage of
+S-421 for passage route information.
+
+Other corrections and updates.
+| 1.3.0       | Sep 2024  | S-129 PT |  Revision based on comments made to S-129 Edition 1.2.0
+| 2.0.0       | Oct 2024  | S-129 PT |  Changes based on comments made to S-129 Edition 1.3.0
+| 2.0.0       | Dec 2024  | HSSC     |  First operational Edition.
+|===
+
+[.preface]
+== Summary of Substantive Changes
+
+*Bold* references in the Clauses Effected column indicate the principle sections/clauses
+that are impacted by the described change.
+
+[cols="467,127",options="header,unnumbered"]
+|===
+| Change Summary | Clauses Affected
+
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+
+|===

@@ -1,0 +1,5 @@
+
+== Geometry
+
+Geometry in S-129 datasets conforms to <<S_100>> Geometry level 3a constrained to
+2-dimensional geometry.

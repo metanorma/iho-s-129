@@ -1,0 +1,141 @@
+
+== Data Product Format (Encoding)
+
+The GML encoding of S-129 datasets is based on the <<S_100>> profile of GML 3.2.1.
+This is described in <<S_100,part=10b>> Edition 5.0.0.
+
+Detailed documentation of the S-129 encoding schema is provided in <<annex-b>> of
+this document.
+
+*Format Name:*:: GML
+
+*Version:*:: 3.2.1
+
+*Character Set:*:: UTF-8
+
+*Specification:*:: S-100 5.0.0 profile of GML 3.2.1
+
+[[sec_17.1]]
+=== Encoding of Latitude and Longitude
+
+Values of latitude and longitude must be expressed with a precision of 7 decimal
+places. Coordinates must be encoded as decimals in the format described below. The
+encoding is indicated by multiplication factor fields defined in the <<S_100>> GML
+schema dataset identification record.
+
+==== Encoding of coordinates as decimals
+
+Values should be coded as decimal numbers with 7 or fewer digits after the decimal.
+The normative encoding is in degrees, with an accuracy of stem:[10^{-7}] degrees
+(that is, 7 digits after the decimal point). The decimal point must be indicated
+by the "." character.
+
+Trailing zeroes after the decimal point (and the decimal point itself if appropriate)
+may be omitted at producer discretion, but the accuracy must still be as indicated
+(for example stem:[10^{-7}] degrees for coordinates of default accuracy).
+
+Latitude and longitude multiplication factors held in the Dataset Structure Information
+field under [coordMultFactorX] and [coordMultFactorY] must be set to a value corresponding
+to the encoding (for example {1} for coordinates encoded in decimal degrees).
+
+[example]
+A stem:["longitude" = 42.0000] is converted into
+stem:[X = "longitude" * "coordMultFactorX" = 42.0000 * 1 = 42.000000000].
+
+[[sec_17.2]]
+=== Numeric Attribute Encoding
+
+Floating point and integer attribute values must not contain leading zeros.
+Floating point attribute values must not contain non-significant trailing zeros.
+
+[[sec_17.3]]
+=== Text Attribute Values
+
+Character strings must be encoded using the character set defined in
+<<ISO_10646_1>>, in Unicode Transformation Format-8 (UTF-8).
+
+[[sec_17.4]]
+=== Mandatory Attribute Values
+
+There are four reasons why attribute values may be considered mandatory:
+
+* They determine whether a feature is in the display base.
+* Certain features make no logical sense without specific attributes.
+* Some attributes are necessary to determine which symbol is to be displayed.
+* Some attributes are required for safety of navigation.
+
+All mandatory attributes are identified in the Feature Catalogue and
+summarised in <<annex-a,style=full%>>.
+
+[[sec_17.5]]
+=== Unknown Attribute Values
+
+When a mandatory attribute code or tag is present, but the attribute value is missing,
+it means that the producer wishes to indicate that this attribute value is unknown.
+Missing mandatory attributes must be "nilled" with a GML _nilReason_ attribute giving
+the reason for omission.
+
+Optional attributes must be omitted altogether if the value is unknown or missing.
+They must not be "nilled."
+
+[[sec_17.6]]
+=== Structure of dataset files
+
+==== Sequence of objects
+
+The order of data objects in each dataset file is described below:
+
+. Dataset identification information
+. Dataset structure information
+. Spatial records for by-reference geometries
+
+.. Point
+.. Multi point
+.. Curve
+.. Composite curve
+.. Surface
+. Information objects
+. Feature objects (Geometry may be encoded inline or by reference)
+
+.. Meta features
+.. Geo features
+. S-129 Collection objects
+
+[[sec_17.7]]
+=== Object identifiers
+
+The name of feature records must provide a unique world-wide identifier of feature
+records. The name of the record is the combination of the sub-fields *agency*,
+*featureObjectIdentifier* and *featureIdentificationSubdivision* elements of the
+*featureObjectIdentifier* element of the object.
+
+Features, information types, collection objects, meta features, and geometries
+(inline or external) are all required by the schema to have a *gml:id* attribute
+with a value that is unique within the dataset. The *gml:id* values must be used
+as the reference for the object from another object in the same dataset or another
+dataset.
+
+[[sec_17.8]]
+=== Dataset validation
+
+Fields may be repeated or omitted as permitted by the XML schemas and the validation
+tests. Since XML schema cannot encode rules for conditional presence or attributes,
+these rules can be checked by Schematron rules or other validation code.
+
+[[sec_17.9]]
+=== Data overlap
+
+S-129 datasets may spatially overlap other S-129 datasets.
+
+S-129 datasets may temporally overlap other S-129 datasets. As S-129 datasets include
+forecast information, it is possible that S-129 datasets for different vessels correspond
+to overlapping voyage times or sailing windows.
+
+In the case of S-129 dataset updates, new S-129 datasets can replace preceding S-129
+datasets for the same vessel, UKCM Operational Area, and planned time of voyage,
+to account for prevailing environmental and/or voyage conditions.
+
+[[sec_17.10]]
+=== Data quality
+
+One or more QualityOfNonbathymetricData feature must cover the dataset.

@@ -1,0 +1,44 @@
+
+== Maintenance
+
+Dataset maintenance is dependent on local conditions and the policies of the UKCM
+Service Provider. Typically, a ship would be sent several UKCM information products
+during a transit of a UKCM Operational Area in order to ensure the ship has correct
+and up-to-date UKCM information.
+
+[[sec_15.1]]
+=== Maintenance and Update Frequency
+
+In the pre-planning use case the UKCM Service may simply compute a tidal window based
+on predicted tide, forecast navigable depths (including safety/manoeuvrability margins)
+ship maximum draught, speed and squat predictions, other forecast environmental conditions
+and standard assumed route. In this pre-planning scenario, the UKCM Service could
+only return a single dataset and generally no updates would be required until closer
+to the time of the ship entering the UKCM Operational Area (for example, 24 hours
+prior).
+
+Closer to the time of the ship entering the UKCM Operational Area, the ship will
+need a more detailed passage plan, which will be updated more frequently. Depending
+on the variability of the observed and forecast conditions in the UKCM Operational
+Area, the update frequency might range between 10 minutes to 60 minutes.
+
+As the ship is approaching the UKCM Operational Area, more up-to-date information
+will be required and UKCM product datasets may be updated as frequently as, for example,
+every five to ten minutes.
+
+[[sec_15.2]]
+=== Data Source
+
+Data sources used when creating UKCM product datasets can vary with each UKCM Operational
+Area. Source information can include high-definition bathymetric data, observed or
+forecast water level, current, tidal stream, and observed or forecast climatic data.
+This information is combined into a model that contains ship details such as draughts,
+speed and position to create UKCM product datasets that are individually tailored
+for each ship.
+
+[[sec_15.3]]
+=== Production Process
+
+The production process of UKCM product datasets will vary depending on the environmental
+sensors used in each UKCM Operational Area and may also vary depending on the stage
+of a ship's passage.

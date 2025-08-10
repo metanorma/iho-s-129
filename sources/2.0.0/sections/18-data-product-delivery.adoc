@@ -1,0 +1,155 @@
+
+== Data Product Delivery
+
+[[sec_18.1]]
+=== Introduction
+
+This clause specifies the encoding and delivery mechanisms for an S-129 dataset.
+Data which conforms to this Product Specification must be delivered by means of an
+exchange set.
+
+*Units of Delivery:*:: Exchange set
+
+*Transfer Size:*:: See <<sec_18.2.2>>
+
+*Medium Name:*:: Digital data delivery
+
+*Other Delivery Information:*
+
+Each dataset must be contained in a separate, uniquely identified file on the transfer
+medium.
+
+Each exchange set has a single exchange catalogue, which contains the discovery metadata
+for each dataset and references to any support files.
+
+Support files contain supplementary information which is linked to the features and
+information types by attributes. The attributes containing these links are described
+in the Application Schema and Feature Catalogue.
+
+An exchange set may be encapsulated in a form suitable for transmission by a mapping
+called a transmission encoding. An encoding translates each of the elements of the
+exchange set into a logical form suitable for writing to media and for transmission.
+An encoding may also define other elements in addition to the exchange set contents
+(for example media identification, data extents, etc.) and also may define commercial
+constructs such as encryption and compression methods.
+
+Depending on the required level of detail, particularly when non-navigable and almost
+non-navigable areas are included, S-129 files can be constructed accordingly to maximise
+efficiency of transmission.
+
+Further, S-129 files can be compressed using guidance provided in <<S_100,part=15>>
+in cases where files would otherwise take too long to transmit.
+
+It is anticipated that uncompressed S-129 files for an area of 36 by 10 nautical
+miles, may range in size between stem:[0.7 "unitsml(Mbyte_B)"] and stem:[2.5 "unitsml(Mbyte_B)"],
+depending on the complexity and extent of the no-go areas. Compressed versions of
+such files can reduce file sizes to between stem:[28 "unitsml(kbyte_B)"] and
+stem:[93 "unitsml(kbyte_B)"] respectively.
+
+If the data is transformed (for example for encryption or compression purposes)
+its content must not be changed.
+
+This Product Specification defines the transmission encoding which must be used as
+a default for transmission of data.
+
+The exchange set elements are as follows:
+
+Mandatory Elements:
+
+* S-129 datasets -- GML encoding of features/attributes and their associated geometry
+and metadata.
+
+* Exchange Catalogue -- the XML encoded representation of exchange set catalogue
+features [discovery metadata].
+
+Optional Elements:
+
+* Supplementary files -- These are contained within the exchange set as files and
+the map from the name included within the dataset and the physical location is defined
+within the Exchange Catalogue.
+
+* Feature Catalogue -- If it is necessary to deliver the latest Feature Catalogue
+to the end user it may be done using the S-129 exchange set mechanism for datasets
+(that is, include the updated Feature Catalogue in an exchange set).
+
+* Portrayal Catalogue -- If it is necessary to deliver the latest Portrayal Catalogue
+to the end user it may be done using the S-129 exchange set mechanism for datasets
+(that is, include the updated Portrayal Catalogue in an exchange set).
+
+S-129 Exchange set structure conforms to <<S_100,part=4a,figure=4a-D-3>> without
+modification.
+
+[[figure-18-1]]
+.Exchange set structure
+image::figure-18-1.jpeg[]
+
+==== Catalogue File Naming Convention
+
+The exchange catalogue acts as the table of contents for the exchange set. The catalogue
+file of the exchange set must be named CATALOG.XML. No other file in the exchange
+set may be named CATALOG.XML. The content of the exchange catalogue file is described
+in <<sec_19.5>>.
+
+[[sec_18.2]]
+=== Dataset
+
+==== Datasets
+
+Datasets are distributed as files which are part of exchange sets structured as described
+in this Product Specification. The distribution media or transmission method is at
+the discretion of the producer and/or distributor.
+
+The following types of dataset files may be produced and contained within an exchange
+set:
+
+. New dataset and new edition of a dataset (base dataset): Each new edition of a
+dataset must have the same name as the dataset that it replaces. A new edition can
+also contain data that has previously been produced for the same UKCM Operational
+Area. The encoding structure is included in <<annex-b>>.
+. Cancellation: A dataset shall be considered cancelled when a newer edition has
+been received or its temporal extent (i.e. _temporalExtent_ metadata) is exceeded.
+
+[[sec_18.2.2]]
+==== Dataset size
+
+The recommended maximum file size for S-129 UKCM datasets is 20MB. Future usage or
+testing may result in a different recommended file size limit.
+
+==== Dataset file naming
+
+Dataset files shall be named:
+
+129XXXXYYYYYYYY.GML
+
+The file name forms a unique identifier where:
+
+* the first three characters are fixed to 129, and identify the dataset as a S-129
+dataset.
+
+* the fourth to seventh characters indicate the issuing agency (mandatory) in accordance
+with IHO <<S_62>>.
+
+* the eighth to fifteenth characters are optional and may be used in any way by the
+producer to provide the unique file name. It is not required to use all characters.
+The following characters are allowed in the dataset name: A to Z, 0 to 9 and the
+special character ++_++ (underscore).
+
+* GML -- the character sequence "GML" or "gml".
+
+[[sec_18.3]]
+=== Data Integrity
+
+<<S_100,part=15>> defines the algorithms for compressing, encrypting and digitally
+signing datasets based on the <<S_100>> Data Model. The individual Product Specifications
+provide details about which of the elements are being used and on which files in
+the dataset.
+
+==== Data Encryption
+
+Dataset files may or may not be encrypted. If encrypted, the encryption method defined
+in <<S_100,part=15>> must be applied.
+
+==== Use of Digital Signatures
+
+Digital signatures shall be used on all files. The signature method is defined in
+<<S_100,part=15>>.

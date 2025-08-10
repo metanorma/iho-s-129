@@ -1,0 +1,27 @@
+
+== Data Quality
+
+[[sec_13.1]]
+=== Introduction
+
+Areas where UKCM Services are in place are typically covered by very high definition
+bathymetry, and have available predicted and observed (that is, real time or near
+real time) met-ocean data.
+
+Bathymetric, tidal and other met-ocean data used to generate products in compliance
+with this Product Specification are provided by official sources using quality assured
+processes outside the scope of this Product Specification. This information is, therefore,
+assumed to be of high quality and guaranteed by the processes employed by the relevant
+authorities.
+
+Quality of UKCM products used for navigation depends on the combined quality of many
+inputs including observed and forecast data (for example bathymetry, tide, water
+levels, currents, tidal streams etc.) and ship positional data. Quality information
+relevant to the many data inputs used by a UKCM Service is difficult to produce as
+a meaningful metric of UKCM product quality able to be understood by the mariner.
+
+Data validity is time-limited and is another reason why it is not practical to provide
+a meaningful measure of data quality for UKCM products.
+
+UKCM products are generated containing margins that account for uncertainty to guarantee
+the safety of individual ships for stated periods of validity.

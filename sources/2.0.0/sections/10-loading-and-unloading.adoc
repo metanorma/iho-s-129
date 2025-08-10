@@ -1,0 +1,18 @@
+
+== Dataset Loading and Unloading
+
+S-129 datasets are typically intended to be overlays to <<S_101>> ENC and always
+displayed with <<S_101>> ENC data in the background. Systems that support the display
+of S-129 datasets should provide the user with simple functions to turn the display
+of S-129 datasets on and off.
+
+All S-129 datasets are scale independent and will therefore be usable across the
+entire scale range of underlying chart data for the UKCM Operational Area. The various
+feature instances within the dataset may include scaleMinimum attributes, but these
+do not change the resolution or validity of the data, only whether the data should
+be visible at a particular display scale.
+
+Optionally, S-129 datasets can be viewed as overlays to a combination of <<S_101>>
+ENC and <<S_102>> (Bathymetric Surface) datasets, with <<S_104>> (Water Level Information
+for Surface Navigation) datasets incorporated where applicable. The same requirements
+to allow the user to easily toggle the S-129 dataset on/off persist.

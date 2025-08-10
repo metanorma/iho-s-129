@@ -1,0 +1,51 @@
+
+== Coordinate Reference Systems (CRS)
+
+[[sec_12.1]]
+=== Introduction
+
+The location of a feature in the <<S_100>> standard is defined by means of coordinates,
+which relate a feature to a position.
+
+*Horizontal coordinate reference system:*:: EPSG:4326 (WGS84)
+
+*Projection:*:: None
+
+*Temporal reference system:*:: Gregorian calendar
+
+*Coordinate reference system registry:*:: http://www.epsg-registry.org/[EPSG Geodetic Parameter Registry]
+
+*Date type (according to ISO 19115):*:: 002 -- publication
+
+*Responsible party:*:: International Association of Oil and Gas Producers (IOGP)
+
+*URL:*:: http://www.iogp.org/
+
+[[sec_12.2]]
+=== Horizontal Reference System
+
+In S-129 datasets the horizontal CRS must be the ellipsoidal (geodetic) system EPSG:
+4326 (WGS84). The full reference to EPSG: 4326 can be found at https://epsg.org/
+
+[[sec_12.3]]
+=== Vertical Reference System
+
+The vertical coordinate is directed upward from its origin (that is, away from the
+Earth's centre) -- the vertical datum -- and has units of metres. That is, a positive
+value for the level relative to the vertical datum means that the level is above
+the vertical datum. This is consistent with the bathymetric CRS in <<S_102>> Edition
+1.0.0. The vertical datum is not an ellipsoid but is one of the following: (a) the
+sea surface (defined in <<sec_3.2>>), (b) a vertical, sounding, or chart datum (MSL,
+LAT, etc.), or pass-format:metanorma[(c)] the sea floor.
+
+[[sec_12.4]]
+=== Temporal Reference System
+
+The temporal reference system is the Gregorian calendar for date and UTC for time.
+Time is measured by reference to Calendar dates and Clock time in accordance with
+<<ISO_19108_2002>>, Temporal Schema clause 5.4.4. All date and time variables must
+follow the format specified in <<ISO_8601_1_2019>> and <<ISO_8601_2_2019>>.
+
+* A date variable will have the following 8-character format: yyyymmdd.
+* A time variable will have the following 7-character format: hhmmssZ.
+* A date-time variable will have the following 16-character format: yyyymmddThhmmssZ.

@@ -1,0 +1,44 @@
+
+== Dataset Identification
+
+This section describes how to identify datasets that conform to this Product Specification.
+An Under Keel Clearance Management dataset that conforms to this Product Specification
+uses the following general information for distinction:
+
+*Title:*:: Under Keel Clearance Management
+
+*Abstract:*:: The dataset is a file containing under keel clearance data for a particular
+geographic region and set of times, along with the accompanying metadata describing
+the content, variables, applicable times and locations, and structure of the dataset.
+Under keel clearance management data includes vessel and voyage specific areas assessed
+as being navigationally safe or unsafe with regard to under keel clearance, and windows
+within which these assessments are valid, based upon observed and/or mathematically-predicted
+values. The frequency of dataset updates depends on the voyage and local conditions.
+
+*Acronym:*:: UKCM
+
+*Geographic Description:*:: EX_GeographicDescription: For example, official name
+of region
+
+*Spatial Resolution:*:: MD_Resolution>equivalentScale.denominator (integer) or MD_Resolution>levelOfDetail (CharacterString). For example, "All scales"
+
+*Purpose:*:: Under keel clearance management data is intended to be used as a layer
+in an ENC
+
+*Language:*::
++
+--
+EN +
+Additional values, if any, use CharacterString values from <<ISO_639_2_1998>>
+--
+
+*Classification:*::
++
+--
+Unclassified +
+Additional values, if any, use CharacterString values from <<ISO_639_2_1998>>
+--
+
+*Point of Contact:*:: CI_Responsibility
+
+*Use Limitation:*:: Invalid over land

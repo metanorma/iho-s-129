@@ -1,0 +1,15 @@
+
+== Specification Scope
+
+This Product Specification describes one product and therefore requires only one
+scope.
+
+*Scope ID:*:: Under Keel Clearance Management datasets
+
+*Hierarchical level:*:: MD_ScopeCode -- 005
+
+*Hierarchical level name:*:: Dataset
+
+*Level description:*:: Information applies to the datasets
+
+*Extent:*:: EX_Extent.description: Global coverage of maritime areas

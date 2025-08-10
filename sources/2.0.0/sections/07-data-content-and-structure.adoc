@@ -1,0 +1,358 @@
+
+== Data Content and Structure
+
+[[sec_7.1]]
+=== Introduction
+
+This section discusses:
+
+* the application schema expressed in UML 2.0, shown in <<figure-7-2>>. S-129 Data Model;
+
+* the associated feature catalogue (included in <<annex-c>>);
+
+* the dataset types, providing a full description of each feature type including
+its attributes, attribute values and relationships in the dataset;
+
+* the geometry of each feature type, where applicable
+
+* dataset loading and unloading; and
+
+[[figure-7-1]]
+.Relationship between <<S_100>> meta class and S-129 application schema
+image::figure-7-1.png[]
+
+The S-129 features are based on the <<S_100>> General Feature Model (GFM) and are
+a feature-based vector product. <<figure-7-1>> shows the relations between the S-129
+Application Schema and the <<S_100>> GFM.
+
+All S-129 features are derived from the feature *UnderKeelClearancePlan* defined
+in the S-129 Application Schema and this *UnderKeelClearancePlan* realizes the GFM
+meta-classes *S100_GF_FeatureType*.
+
+S-129 datasets are generally intended to be used with <<S_101>> ENC, and optionally
+with <<S_102>> (Bathymetric Surface), <<S_104>> (Water Level Information for Surface
+Navigation), or <<S_111>> (Surface Currents) datasets. <<S_101>> provides the background
+information, while S-129 datasets provide additional information related specifically
+to UKCM. S-129 datasets are also intended to be used with <<S_421>>, if available,
+to provide passage route information. When S-421 datasets are unavailable, alternative
+methods, such as RTZ route plan exchange format, can be used to provide passage route
+information.
+
+Dataset content will change over time during a ship's transit. Updating datasets
+is achieved by replacement. The attribute "underKeelClearancePurpose" captures the
+intended purpose of a dataset. The possible values are 'Pre-plan', 'Actual Plan'
+and 'Actual Update'.
+
+==== Dataset purposes
+
+===== Pre-plan datasets
+
+_Pre-plan_ datasets are used in voyage pre-planning and will produce for a ship a
+set of tidal windows for an arrival port or waterway, for a specified draught, days
+or weeks in advance. In this case, it is likely that the UKCM Service will simply
+compute tidal windows based on water level and current forecast models, other weather
+statistics and a standard assumed route.
+
+===== Actual Plan datasets
+
+_Actual Plan_ datasets are produced closer to the arrival/departure (for example,
+24 hours prior) and provide the mariner (crew and/or pilot) with a more detailed
+passage plan. This plan is generated from more frequent and/or precise weather
+forecasts/observations.
+
+===== Actual Update datasets
+
+_Actual Update_ datasets include more up-to-date information and may be required
+every five to ten minutes. These datasets include the route, the under keel clearance
+plan area, almost non-navigable areas, and non-navigable areas under the 'parent'
+UnderKeelClearancePlan feature. The dataset will be updated based on the latest weather
+conditions and, if available, actual ship position, heading and speed (for example
+as received by a UKCM Service Provider via a ship's transmitted AIS signal).
+
+[[sec_7.1.2]]
+==== Dataset use cases
+
+UKCM datasets are updated by whole dataset replacement. Which data needs to be updated,
+and how frequently, depends on the purpose of UKC calculation (as indicated by the
+'underKeelClearancePurpose' attribute). The following is a typical updating scenario,
+but variations may exist depending on local circumstances.
+
+In the pre-planning use case, a ship requests a set of tidal windows for an arrival/departure
+port or waterway, for a specified draught, days or weeks in advance. In this case,
+the UKCM Service may compute a tidal window based on predicted tides, forecast navigable
+depths, including safety/manoeuvrability margins, ship maximum draught, speed and
+squat predictions, other forecast environmental conditions and a standard assumed
+route. In this scenario, the UKCM Service could return a single Pre-plan dataset,
+and generally no updates are required until closer to the time when the ship enters
+the UKCM Operational Area (for example, approximately 24 hrs prior to entry).
+
+Closer to the time time of a ship entering the UKCM Operational Area (for example,
+24 hours prior), the ship will need a more detailed UKC plan. This Actual Plan usually
+considers more up to date information and will typically need to be updated more
+frequently. In this case, the non-navigable and almost non-navigable areas, any tidal
+windows (via Control Points), and some metadata will have changed. Depending on the
+variability of the met-ocean conditions, the update frequency could vary, for example
+between 10 and 60 minutes.
+
+Immediately before entering the UKCM Operational Area and whilst underway, the use
+case changes again to become the Actual Update. Throughout the Actual Plan phase,
+more up-to-date UKC information is required, provided more frequently than Actual
+Plan datasets (for example, every five to ten minutes). In this case, it is likely
+that the whole information in the dataset needs to be updated -- including the route,
+the almost non-navigable areas, non-navigable areas, and the 'parent' UnderKeelClearancePlan
+feature. The dataset will be updated based on latest observed and forecast conditions,
+and (optionally) actual ship position, heading and speed (for example as received
+in a UKCM Service via AIS). As a ship's transit is underway, and its actual position
+is updated, it is likely that the extent of the almost non-navigable and non-navigable
+areas need to be updated. The boundaries of the UKC plan area will also likely need
+to be updated to reflect areas no longer in scope of the UKC calculation (e.g. areas
+behind transiting vessel).
+
+[%landscape]
+<<<
+
+[[sec_7.2]]
+=== Application Schema
+
+<<figure-7-2>> is the UML data model for the S-129.
+
+[[figure-7-2]]
+.S-129 Data Model
+image::figure-7-2.png[]
+
+==== Feature Types
+
+===== UnderKeelClearancePlan
+
+[cols="6",options="header,unnumbered"]
+|===
+| Role | Name | Description | Mult | dataType | Remarks
+
+| Class | UnderKeelClearancePlan | A UKC plan calculated for a particular vessel, for a particular passage |
+| FeatureType | | SimpleAttribute | generationTime | Time the UKC plan was generated | [0..1] | DateTime |
+| SimpleAttribute | vesselID | Vessel identifier, based on MRN. Can be either IMO or MMSI based | [0..1] | Text |
+
+| SimpleAttribute | sourceRouteName | Identification of the route used as a source for the calculation | [0..1] | Text | May be provided through different methods, such as <<S_421>>, RTZ, or as generated by the UKCM Service.If provided, for example, using <<S_421>>, the value of "__S-421.Route.routeID__" is used for machine-readable identification, or the value of "__S-421.RouteInfo.routeInfoName__" is used for human-readable identification.
+| SimpleAttribute | sourceRouteVersion | Identification of the route used as a source for the calculation | [0..1] | Integer | May be provided through different methods, such as <<S_421>>, RTZ, or as generated by the UKCM Service.Can be used to supplement information provided by "__sourceRouteName__", especially if "__sourceRouteName__" provides insufficient route information.If provided, for example, using <<S_421>>, the value of "__S-421.Route.routeEditionNo__" is used.
+
+| SimpleAttribute | maximumDraught | The maximum vessel draught in metres, used as base for the calculation | [0..1] | Real |
+
+| SimpleAttribute | underKeelClearancePurpose | The relevant phase of a UKC passage plan.  | [0..1] | underKeelClearancePurposeType |
+
+| SimpleAttribute | underKeelClearanceCalculationRequested
+| Indication of the aim of the UKC plan: To find the maximum safe vessel draught
+for transiting the UKCM region, or to find sailing windows for a nominated vessel
+draught.
+| [0..1] | underKeelClearanceCalculationRequestedType |
+
+| SimpleAttribute | interoperabilityIdentifier
+| A common unique identifier for entities which describe a single real-world feature,
+and which is used to identify instances of the feature in end-user systems where
+the feature may be included in multiple data product types.
+| [0..1] | URN |
+
+| ComplexAttribute | fixedTimeRange | Time period | [0..1] | fixedTimeRange |
+
+|===
+
+===== UnderKeelClearancePlanArea
+
+[cols="6",options="header,unnumbered"]
+|===
+| Role | Name | Description | Mult | dataType | Remarks
+
+| Class | UnderKeelClearancePlanArea
+| The area for which an under keel clearance plan has been calculated for a particular
+vessel, for a particular passage.
+| | FeatureType |
+
+| SimpleAttribute | scaleMinimum | The minimum scale at which the feature may be used for example for ECDIS presentation.
+| [0..1] | Integer |
+
+| SimpleAttribute | interoperabilityIdentifier
+| A common unique identifier for entities which describe a single real-world feature,
+and which is used to identify instances of the feature in end-user systems where
+the feature may be included in multiple data product types.
+| [0..1] | URN |
+
+| SpatialAttribute | geometry | Geometric object comes from Geometry class in <<S_100>> standard.
+| [1] | GM_OrientableSurface
+a| Boundaries of the Under Keel Clearance Plan Area.
+
+The extents of the boundaries are likely to be updated in Actual Update datasets,
+to reflect areas no longer in scope of the UKC calculation.
+
+(Refer to <<sec_7.1.2>>).
+
+|===
+
+===== UnderKeelClearanceNonNavigableArea
+
+[cols="6",options="header,unnumbered"]
+|===
+| Role | Name | Description | Mult | dataType | Remarks
+
+| Class | UnderKeelClearanceNonNavigableArea | An area of under keel clearance less than the calculated safe limit |
+| FeatureType | The area has a time-dependent dimension
+
+| SimpleAttribute | scaleMinimum | The minimum scale at which the feature may be used for example for ECDIS presentation.
+| [0..1] | Integer |
+
+| SimpleAttribute | interoperabilityIdentifier
+| A common unique identifier for entities which describe a single real-world feature,
+and which is used to identify instances of the feature in end-user systems where
+the feature may be included in multiple data product types.
+| [0..1] | URN |
+
+| SpatialAttribute | geometry | Geometric object come from Geometry class in <<S_100>> standard | [1] | GM_OrientableSurface | Encompassed by UnderKeelClearancePlanArea
+
+|===
+
+===== UnderKeelClearanceAlmostNonNavigableArea
+
+[cols="6",options="header,unnumbered"]
+|===
+| Role | Name | Description | Mult | dataType | Remarks
+
+| Class | UnderKeelClearanceAlmostNonNavigableArea
+| An area of under keel clearance almost less than the calculated safe limit, as
+established for the waterway
+| | FeatureType | The area has a time-dependent dimension
+
+| SimpleAttribute | distanceAboveUKCLimit
+| The distance of the lowest part of the ship's keel above the established Under
+Keel Clearance Limit for the waterway, expressed in metres.
+| [0..1] | Real |
+
+| SimpleAttribute | scaleMinimum
+| The minimum scale at which the feature may be used for example for ECDIS presentation.
+| [0..1] | Integer |
+
+| SimpleAttribute | interoperabilityIdentifier
+| A common unique identifier for entities which describe a single real-world feature,
+and which is used to identify instances of the feature in end-user systems where
+the feature may be included in multiple data product types.
+| [0..1] | URN |
+
+| SpatialAttribute | geometry | Geometric object come from Geometry class in <<S_100>> standard | [1] | GM_OrientableSurface | Encompassed by UnderKeelClearancePlanArea
+
+|===
+
+===== UnderKeelClearanceControlPoint
+
+[cols="6",options="header,unnumbered"]
+|===
+| Role | Name | Description | Mult | Data Type | Remarks
+
+| Class
+| UnderKeelClearance +
+ControlPoint
+| Especially selected critical passage point or line | | FeatureType |
+
+| SimpleAttribute | distanceAboveUKCLimit
+| The distance of the lowest part of the ship's keel above the established Under
+Keel Clearance Limit for the waterway, expressed in metres.
+| [0..1] | Real |
+
+| ComplexAttribute | featureName
+| Provides the name of an entity, defines the national language of the name, and
+provides the option to display the name at various system display settings.
+| [0..1] | featureName |
+
+| SimpleAttribute | expectedPassingSpeed
+| The expected passing speed for a ship for a nominated Under Keel Clearance Control
+Point.
+| [0..1] | Real |
+
+| SimpleAttribute | expectedPassingTime
+| The expected passing time for a ship for a nominated Under Keel Clearance Control
+Point.
+| [0..1] | DateTime |
+
+| SimpleAttribute | interoperabilityIdentifier
+| A common unique identifier for entities which describe a single real-world feature,
+and which is used to identify instances of the feature in end-user systems where
+the feature may be included in multiple data product types.
+| [0..1] | URN |
+
+| ComplexAttribute | fixedTimeRange | Time interval.  | [0..1] | fixedTimeRange |
+
+|===
+
+[%portrait]
+<<<
+
+==== Feature Relationship
+
+[cols="6",options="header,unnumbered"]
+|===
+| | Source | Mult | Target | Mult | Roles
+
+| Composition | UnderKeelClearancePlanArea               | [1] | UnderKeelClearancePlan | [0..++*++] | Source role -- theComponentTarget role -- theCollection
+| Composition | UnderKeelClearanceNonNavigableArea       | [1] | UnderKeelClearancePlan | [0..++*++] | Source role -- theComponentTarget role -- theCollection
+| Composition | UnderKeelClearanceAlmostNonNavigableArea | [1] | UnderKeelClearancePlan | [0..++*++] | Source role -- theComponentTarget role --theCollection
+| Composition | UnderKeelClearanceControlPoint           | [1] | UnderKeelClearancePlan | [1..++*++] | Source role -- theComponentTarget role --theCollection
+
+|===
+
+==== Complex Attribute
+
+===== Fixed Time Range
+
+[cols="6",options="header,unnumbered"]
+|===
+| Role | Name | Description | Multiplicity | Data Type | Remarks
+
+| ComplexAttribute | fixedTimeRange | Time interval.                      |        |          |
+| Attribute        | timeStart      | The start time of an active period. | [0..1] | DateTime |
+| Attribute        | timeEnd        | The end time of an active period.   | [0..1] | DateTime |
+|===
+
+===== Feature Name
+
+[cols="6",options="header,unnumbered"]
+|===
+| Role | Name | Description | Multiplicity | Data Type | Remarks
+
+| ComplexAttribute | featureName
+| Provides the name of an entity, defines the national language of the name, and
+provides the option to display the name at various system display settings.
+| | |
+
+| Attribute | language
+| The method of human communication, either spoken or written, consisting of the
+use of words in a structured and conventional way.
+| [1] | Text |
+
+| Attribute | name | The individual name of a feature.  | [1] | Text |
+
+| Attribute | nameUsage | Classification of the type and display level of the name
+of a feature in an end-user system.
+| [0..1] | Enumeration |
+
+|===
+
+==== Enumerations
+
+[cols="5",options="header,unnumbered"]
+|===
+| Name | Description | Multiplicity | Data Type | Values
+
+| underKeelClearancePurpose | The relevant phase of a UKC passage plan. | [0..1] | Enumeration
+| 1: Pre Plan +
+2: Actual Plan +
+3: Actual Update
+
+| underKeelClearanceCalculationRequested |
+Indication of the aim of the UKC plan: To find the maximum safe vessel draught for
+transiting the UKCM region, or to find sailing windows for a nominated vessel draught.
+| [0..1] | Enumeration
+| 1: Time Window +
+2: Maximum Draught
+
+| nameUsage | Classification of the type and display level of the name of a feature
+in an end-user system. | [0..1] | Enumeration
+| 1: defaultNameDisplay +
+2: alternateNameDisplay
+
+|===

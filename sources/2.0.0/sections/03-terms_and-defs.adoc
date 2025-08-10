@@ -1,0 +1,179 @@
+
+== Terms, Definitions and Abbreviations
+
+[[sec_3.1]]
+=== Use of Language
+
+Within this document:
+
+* "Must" indicates a mandatory requirement.
+
+* "Should" indicates an optional requirement, that is the recommended process to
+be followed, but is not mandatory.
+
+* "May" means "allowed to" or "could possibly", but is not mandatory.
+
+[[sec_3.2]]
+[heading="terms and definitions"]
+=== Terms and Definitions
+
+The <<S_100>> framework is based on the ISO 19100 series of geographic standards.
+The terms and definitions provided here are used to standardize the nomenclature
+found within that framework, whenever possible. They are taken from the references
+cited in <<sec_2.1>>. Modifications have been made where necessary.
+
+==== Actual Plan
+
+An Actual Plan is specific to a ship and a UKCM Operational Area for a waterway,
+and contains a route -- defined by a set of geographical control points -- with time
+windows for each {{Control Point,control point}}, and {{Non-navigable Area,non-navigable}}
+and {{Almost non-navigable area,almost non-navigable}} areas.
+
+==== Actual Update
+
+An Actual Update is a replacement {{Actual Plan}}.
+
+==== Almost non-navigable area
+
+An area within a UKCM Operational Area where UKC for a specific ship is calculated
+to be approaching the UKC limit for the waterway (within a specified value range).
+
+==== Control Point
+
+A geographical position denoting a point along a specific ship's route within a UKCM
+Operational Area where the ship must pass within a time range or time window (that
+is, start and end time) calculated by the {{UKCM Service Provider}}.
+
+==== Coordinate
+
+One of a sequence of n numbers designating the position of a point in n-dimensional
+space.
+
+NOTE: In a coordinate reference system, the coordinate numbers are qualified by units.
+
+==== Coordinate Reference System
+
+Coordinate system that is related to an object by a datum.
+
+NOTE: For geodetic and vertical datums, the object will be the Earth.
+
+==== Feature
+
+Abstraction of real-world phenomena.
+
+NOTE: A feature may occur as a type or an instance. Feature type or feature instance
+should be used when only one is meant.
+
+NOTE: In UML 2, a feature is a property, such as an operation or attribute, which
+is encapsulated as part of a list within a classifier, such as an interface, class,
+or data type.
+
+[.source]
+<<ISO_19101_2014>>
+
+[.source]
+<<ISO_19103_2015>>
+
+[.source]
+<<ISO_19110_2016>>
+
+==== Feature Attribute
+
+Characteristic of a feature.
+
+NOTE: A feature attribute may occur as a type or an instance. Feature attribute type
+or feature attribute instance is used when only one is meant.
+
+NOTE: A feature attribute type has a name, a data type, and a domain associated to
+it. A feature attribute instance has an attribute value taken from the domain of
+the feature attribute type.
+
+NOTE: In a feature catalogue, a feature attribute may include a value domain but
+does not specify attribute values for feature instances.
+
+[example]
+A feature attribute named _colour_ may have an attribute value _green_ which belongs
+to the data type _text_.
+
+[example]
+A feature attribute named _length_ may have an attribute value _82.4_ which belongs
+to the data type _real_.
+
+==== Navigation Surface
+
+A data object representing the bathymetry and associated uncertainty with the methods
+by which those objects can be manipulated, combined and used for a number of tasks,
+certified for safety of navigation.
+
+==== Non-navigable Area
+
+An area within a {{UKCM Operational Area}} where UKC for a specific ship is calculated
+to be less than the UKC limit for the waterway.
+
+==== Pre-plan
+
+A Pre-plan is a set of tidal windows available for which a ship can transit through
+a {{UKCM Operational Area}} at a specified draught while satisfying minimum UKC requirements.
+
+==== Sea Surface
+
+A two-dimensional (in the horizontal plane) field representing the air-sea interface,
+with high-frequency fluctuations such as wind waves and swell (but not astronomical
+tides) filtered out.
+
+NOTE: This implies marine water, lakes, waterways, navigable rivers, etc.
+
+[example]
+sea surface, river surface, lake surface.
+
+==== UKC Plan
+
+There are three kinds of UKC plans: a {{Pre-plan}}, an {{Actual Plan}}, and an {{Actual Update}}.
+
+==== UKCM Operational Area
+
+The geographic area in which a {{UKCM Service}} is in operation and for which UKCM information
+can be provided.
+
+==== UKCM Service
+
+An aid to navigation which contributes to navigational safety and efficiency. It
+uses data modelling which may include detailed bathymetry, predicted and real-time
+environmental data, and ship particulars and motion, to provide a ship-specific,
+real-time information and/or forecast information for a given time and waterway.
+
+==== UKCM Service Provider
+
+A UKCM Service Provider is an entity responsible for implementing, providing, and
+maintaining a {{UKCM Service}}. Its role involves producing and disseminating under keel
+clearance (UKC) information, which enhances navigational safety and efficiency within
+a designated port of waterway where a {{UKCM Operational Area}} has been established.
+
+[[sec_3.3]]
+=== Abbreviations
+
+This Product Specification makes use of the following abbreviations:
+
+AIS:: Automatic Identification System
+
+BAG:: Bathymetric Attributed Grid
+
+ECDIS:: Electronic Chart Display and Information System
+
+ENC:: Electronic Navigational Chart
+
+GML:: Geography Markup Language
+
+IEC:: International Electrotechnical Commission
+
+IHO:: International Hydrographic Organization
+
+ISO:: International Organization for Standardization
+
+UKC:: Under Keel Clearance
+
+UKCM:: Under Keel Clearance Management
+
+UML:: Unified Modelling Language
+
+UTC:: Coordinated Universal Time

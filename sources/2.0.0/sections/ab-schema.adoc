@@ -1,0 +1,579 @@
+
+[[annex-b]]
+[appendix,obligation="informative"]
+== Schema documentation for S129.xsd
+
+=== Schema(s)
+
+==== MainschemaS129.xsd
+
+[cols="a,a,a",options="noheader,unnumbered"]
+|===
+h| Namespace 2+| http://www.iho.int/S124/gml/cs0/0.1
+
+.3+| Properties | attributeformdefault: | `unqualified`
+| elementformdefault: | `unqualified`
+| version:            | `0.1-20180531`
+
+|===
+
+=== ComplexType(s)
+
+==== ComplexType -- GM_Point
+
+[cols="a,a",options="noheader,unnumbered"]
+|===
+h| Namespace | http://www.iho.int/S124/gml/cs0/0.1
+h| Diagram   |
+[%unnumbered]
+image::figure-b-1.png[]
+
+h| Usedby   |
+Element:: UnderKeelClearanceControlPointType/geometry
+h| Model    | pointProperty
+h| Children | pointProperty
+
+|===
+
+==== ComplexType -- GM_Curve
+
+[cols="a,a",options="noheader,unnumbered"]
+|===
+h| Namespace | http://www.iho.int/S124/gml/cs0/0.1
+h| Diagram   |
+[%unnumbered]
+image::figure-b-2.png[]
+
+h| Model     | curveProperty
+h| Children  | curveProperty
+
+|===
+
+==== ComplexType -- GM_Surface
+
+[cols="a,a",options="noheader,unnumbered"]
+|===
+h| Namespace | http://www.iho.int/S124/gml/cs0/0.1
+h| Diagram   |
+[%unnumbered]
+image::figure-b-3.png[]
+
+h| Usedby   |
+Elements:: UnderKeelClearanceAlmostNonNavigableAreaType/geometry,
+UnderKeelClearanceNonNaviga-bleAreaType/geometry, UnderKeelClearancePlanAreaType/geometry
+h| Model    | surfaceProperty
+h| Children | surfaceProperty
+
+|===
+
+==== ComplexType -- fixedTimeRangeType
+
+[cols="a,a",options="noheader,unnumbered"]
+|===
+h| Namespace   | http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations | Time interval
+h| Diagram     |
+[%unnumbered]
+image::figure-b-4.png[]
+h| Usedby      |
+Elements:: UnderKeelClearanceControlPointType/fixedTimeRange, UnderKeelClearancePlanType/fixed-TimeRange
+h| Model       | timeStart, timeEnd
+h| Children    | timeEnd, timeStart
+
+|===
+
+==== ComplexType -- featureNameType
+
+[cols="a,a",options="noheader,unnumbered"]
+|===
+h| Namespace | http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations
+| Provides the name of an entity, defines the national language of the name, and
+provides the option to display the name at various system display settings.
+h| Diagram  |
+[%unnumbered]
+image::figure-b-5.jpeg[]
+h| Usedby   | Elements UnderKeelClearanceControlPointType/featureName
+h| Model    | language, name, nameUsage
+h| Children | language, name, nameUsage
+
+|===
+
+==== ComplexType -- FeatureType
+
+[cols="a,a,a,a",options="unnumbered"]
+|===
+h| Namespace 3+| http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations 3+| Generalized feature type which carries all the common attributes
+h| Diagram 3+|
+[%unnumbered]
+image::figure-b-6.jpeg[]
+h| Type 3+| extensionofAbstractFeatureType
+| Type hierarchy 3+|
+[arabic]
+. gml:AbstractGMLType
+[arabic]
+.. gml:AbstractFeatureType
+[arabic]
+... AbstractFeatureType
+[arabic]
+.... FeatureType
+
+h| Properties 3+|
+abstract:: true
+.2+| Usedby 3+|
+Element:: FeatureType
+3+|
+Complex Types:: UnderKeelClearanceAlmostNonNavigableAreaType, UnderKeelClearanceControlPointType,
+UnderKeelClearanceNonNavigableAreaType, UnderKeelClearancePlanAreaType, UnderKeelClearancePlanType
+
+h| Model 3+| gml:boundedBy{0,1}, featureObjectIdentifier{0,1}, informationAssociation*,
+featureAssociation*, invFeatureAssociation*
+h| Children
+3+| featureAssociation, featureObjectIdentifier, gml:boundedBy, informationAssociation,
+invFeatureAssociation
+.3+h| Attributes h| QName h| Type h| Use
+| *gml:id* | ID | required
+| 2+| The attribute gml:id supports provision of a handle for the XML element representing
+a GML Object. Its use is mandatory for all GML objects. It is of XML type ID, so
+is constrained to be unique in the XML document within which it occurs.
+
+|===
+
+==== Complex Type --UnderKeelClearancePlanType
+
+[cols="a,a,a,a",options="unnumbered"]
+|===
+h| Namespace   3+| http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations 3+| A UKC plan calculated for a particular vessel, for a particular
+passage.
+h| Diagram     3+|
+[%unnumbered]
+image::figure-b-7.jpeg[]
+h| Type           3+| extension of FeatureType
+h| Type hierarchy 3+|
+[arabic]
+. gml:AbstractGMLType
+[arabic]
+.. gml:AbstractFeatureType
+[arabic]
+... AbstractFeatureType
+[arabic]
+.... FeatureType
+[arabic]
+..... UnderKeelClearancePlanType
+
+h| Usedby   3+| Element UnderKeelClearancePlan
+h| Model    3+| gml:boundedBy{0,1}, fixedTimeRange, generationTime, vesselID, sourceRouteName,
+sourceRouteVersion, maximumDraught, underKeelClearancePurpose, underKeelClearanceCalculationRequested, interoperabilityIdentifier, theComponent+
+h| Children 3+|fixedTimeRange, generationTime, gml:boundedBy, interoperabilityIdentifier,
+maximumDraught, sourceRouteName, sourceRouteVersion, theComponent,
+underKeelClearanceCalculationRequested, underKeelClearancePurpose, vesselID
+.3+h| Attributes h| QName h| Type h| Use
+| *gml:id* | ID | required
+|
+
+2+| The attribute gml:id supports provision of a handle for the XML element representing
+a GML Object. Its use is mandatory for all GML objects. It is of XML type ID, so
+is constrained to be unique in the XML document within which it occurs.
+
+|===
+
+==== Complex Type -- UnderKeelClearancePlanAreaType
+
+[cols="a,a,a,a",options="nounnumbered"]
+|===
+h| Namespace   3+| http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations 3+| The area for which an under keel clearance plan has been calculated
+for a particular vessel, for a particular passage.
+h| Diagram
+3+|
+[%unnumbered]
+image::figure-b-8.jpeg[]
+
+h| Type           3+| extension of FeatureType
+h| Type hierarchy 3+|
+[arabic,start=2]
+. gml:AbstractGMLType
+[arabic]
+.. gml:AbstractFeatureType
+[arabic]
+... AbstractFeatureType
+[arabic]
+.... FeatureType
+[arabic]
+..... UnderKeelClearancePlanAreaType
+
+h| Usedby   3+| Element UnderKeelClearancePlanArea
+h| Model    3+| gml:boundedBy{0,1}, scaleMinimum, interoperabilityIdentifier, geometry,
+theCollection+
+h| Children 3+| geometry, gml:boundedBy, interoperabilityIdentifier, scaleMinimum,
+theCollection
+.3+h| Attributes h| QName h| Type h| Use
+| *gml:id* | ID | required
+| 2+| The attribute gml:id supports provision of a handle for the XML element representing
+a GML Object. Its use is mandatory for all GML objects. It is of XML type ID, so
+is constrained to be unique in the XML document within which it occurs.
+
+|===
+
+==== Complex Type --UnderKeelClearanceNonNavigableAreaType
+
+[cols="a,a,a,a",options="noheader,unnumbered"]
+|===
+h| Namespace   3+| http://www.iho.int/S124/gml/cs0/0.1
+
+h| Annotations 3+| An area of under keel clearance less than the calculated safe
+limit.
+
+h| Diagram
+3+|
+[%unnumbered]
+image::figure-b-9.jpeg[]
+
+h| Type           3+| extension of FeatureType
+h| Type hierarchy 3+|
+[arabic]
+. gml:AbstractGMLType
+[arabic]
+.. gml:AbstractFeatureType
+[arabic]
+... AbstractFeatureType
+[arabic]
+.... FeatureType
+[arabic]
+..... UnderKeelClearanceNonNavigableAreaType
+
+h| Usedby   3+| Element UnderKeelClearanceNonNavigableArea
+h| Model    3+| gml:boundedBy{0,1}, scaleMinimum, interoperabilityIdentifier, geometry,
+theCollection
+h| Children 3+| geometry, gml:boundedBy, interoperabilityIdentifier, scaleMinimum,
+theCollection
+
+.3+h| Attributes h| QName h| Type h| Use
+| *gml:id* | ID | required
+| 2+| The attribute gml:id supports provision of a handle for the XML element representing
+a GML Object. Its use is mandatory for all GML objects. It is of XML type ID, so
+is constrained to be unique in the XML document within which it occurs.
+
+|===
+
+==== ComplexType -- UnderKeelClearanceAlmostNonNavigableAreaType
+
+[cols="a,a,a,a",options="unnumbered"]
+|===
+h| Namespace   3+| http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations 3+| An area of under keel clearance almost less than the calculated
+safe limit, as established for the waterway.
+h| Diagram     3+|
+[%unnumbered]
+image::figure-b-10.jpeg[]
+
+h| Type 3+| extension of FeatureType
+
+h| Type hierarchy 3+|
+[arabic]
+. gml:AbstractGMLType
+[arabic]
+.. gml:AbstractFeatureType
+[arabic]
+... AbstractFeatureType
+[arabic]
+.... FeatureType
+[arabic]
+..... UnderKeelClearanceAlmostNonNavigableAreaType
+
+h| Usedby   3+| Element UnderKeelClearanceAlmostNonNavigableArea
+h| Model    3+| gml:boundedBy{0,1}, distanceAboveUKCLimit, scaleMinimum, interoperabilityIdentifier,
+geometry, theCollection
+h| Children 3+| distanceAboveUKCLimit, geometry, gml:boundedBy, interoperabilityIdentifier,
+theCollection
+
+.3+h| Attributes h| QName h| Type h| Use
+
+| *gml:id* | ID | required
+
+| *QName* 2+| The attribute gml:id supports provision of a handle for the XML element
+representing a GML Object. Its use is mandatory for all GML objects. It is of XML
+type ID, so is constrained to be unique in the XML document within which it occurs.
+|===
+
+==== Complex Type --UnderKeelClearanceControlPointType
+
+[cols="a,a,a,a",options="unnumbered"]
+|===
+h| Namespace   3+| http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations 3+| Selected critical passage point or line
+h| Diagram     3+|
+[%unnumbered]
+image::figure-b-11.png[]
+
+h| Type           3+| extension of FeatureType
+h| Type hierarchy 3+|
+[arabic]
+. gml:AbstractGMLType
+[arabic]
+.. gml:AbstractFeatureType
+[arabic]
+... AbstractFeatureType
+[arabic]
+.... FeatureType
+[arabic]
+..... UnderKeelClearanceControlPointType
+
+h| Usedby   3+| Element UnderKeelClearanceControlPoint
+h| Model    3+| gml:boundedBy{0,1}, distanceAboveUKCLimit{0,1}, expectedPassingSpeed{0,1},
+expectedPassingTime{0,1}, featureName{0,1}, fixedTimeRange{0,1}, geometry, theCollection
+h| Children 3+| theCollection, distanceAboveUKCLimit, expectedPassingSpeed, expectedPassingTime,
+featureName, fixedTimeRange, geometry, gml:boundedBy, name
+
+.3+h| Attributes h| QName h| Type h| Use
+
+| *gml:id* | ID | required
+| 2+| The attribute gml:id supports provision of a handle for the XML element representing
+a GML Object. Its use is mandatory for all GML objects. It is of XML type ID, so
+is constrained to be unique in the XML document within which it occurs.
+
+|===
+
+==== ComplexType -- InformationTypeType
+
+[cols="a,a,a,a",options="unnumbered"]
+|===
+h| Namespace   3+| http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations 3+| Generalized information type which carry all the common attributes
+h| Diagram     3+|
+[%unnumbered]
+image::figure-b-12.jpeg[]
+
+h| Type           3+| extensionofAbstractInformationType
+h| Type hierarchy 3+|
+[arabic]
+. gml:AbstractGMLType
+[arabic]
+.. AbstractInformationType
+[arabic]
+... InformationTypeType
+
+h| Properties 3+| abstract: true
+h| Usedby     3+| Element InformationType
+h| Model      3+| informationAssociation*, invInformationAssociation*
+h| Children   3+| informationAssociation, invInformationAssociation
+
+.3+h| Attributes h| QName h| Type h| Use
+
+| *gml:id* | ID | required
+|
+
+2+| The attribute gml:id supports provision of a handle for the XML element representing
+a GML Object. Its use is mandatory for all GML objects. It is of XML type ID, so
+is constrained to be unique in the XML document within which it occurs.
+
+|===
+
+==== ComplexType -- DatasetType
+
+[cols="a,a,a,a",options="unnumbered"]
+|===
+h| Namespace   3+| http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations 3+| Dataset element for dataset as "GML document"
+h| Diagram     3+|
+[%unnumbered]
+image::figure-b-13.png[]
+
+h| Type           3+| extensionofgml:AbstractFeatureType
+h| Type hierarchy 3+|
+[arabic]
+. gml:AbstractGMLType
+[arabic]
+.. gml:AbstractFeatureType
+[arabic]
+... DatasetType
+
+h| Usedby   3+| Element DataSet
+h| Model    3+| gml:boundedBy{0,1}, DatasetIdentificationInformation{0,1}, DatasetStructureInformation{0,1},(Point\|MultiPoint\|Curve\| CompositeCurve\|OrientableCurve\|Surface\|Polygon),(imember*\|member*)
+h| Children 3+| CompositeCurve, Curve, DatasetIdentificationInformation, DatasetStructureInformation, MultiPoint, OrientableCurve, Point, Poly-gon, Surface, gml:boundedBy, imember, member
+
+.3+h| Attributes h| QName h| Type h| Use
+| *gml:id* | ID | required
+| 2+| The attribute gml:id supports provision of a handle for the XML element representing
+a GML Object. Its use is mandatory for all GML objects. It is of XML type ID, so
+is constrained to be unique in the XML document within which it occurs.
+
+|===
+
+==== ComplexType -- IMemberType
+
+[cols="a,a,a,a,a,a",options="unnumbered"]
+|===
+h| Namespace   5+| http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations 5+| dataset member <<S_100>> information types
+h| Diagram     5+|
+[%unnumbered]
+image::figure-b-13.png[]
+h| Type           5+| extensionofgml:AbstractFeatureMemberType
+h| Type hierarchy 5+|
+[arabic]
+. gml:AbstractFeatureMemberType
+[arabic]
+.. IMemberType
+
+h| Usedby   5+| Element DatasetType/imember
+h| Model    5+| InformationType
+h| Children 5+| InformationType
+
+.8+| Attributes h| QName h| Type h| Fixed Default h| Use h|
+
+| *nilReason*     | gml:NilReasonType .7+^.^| false    | optional |
+| *owns*          | boolean                 | optional |
+| *xlink:actuate* | xlink:actuateType       | optional |
+| *xlink:arcrole* | xlink:arcroleType       | optional |
+| *xlink:href*    | xlink:hrefType          | optional |
+| *xlink:role*    | xlink:roleType          | optional |
+| *xlink:show*    | xlink:showType          | optional |
+
+.3+| h| QName h| Type h| Fixed Default h| Use h|
+
+| *xlink:title* | xlink:titleAttrType .2+^.^| simple   | optional |
+| *xlink:type*  | xlink:typeType            | optional |
+|===
+
+==== ComplexType -- MemberType
+
+[cols="a,a,a,a,a,a",options="unnumbered"]
+|===
+h| Namespace    5+| http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations  5+| dataset member
+h| Diagram Type 5+|
+[%unnumbered]
+image::figure-b-14.png[]extensionofgml:AbstractFeatureMemberType
+
+h| Type hierarchy 5+| 
+
+[arabic]
+. gml:AbstractFeatureMemberType
+[arabic]
+.. MemberType
+
+h| Usedby   5+| Element DatasetType/member
+h| Model    5+| gml:AbstractFeature
+h| Children 5+| gml:AbstractFeature
+
+.10+| Attributes
+h| QName h| Type h| Fixed Default h| Use h|
+
+| *nilReason*     | gml:NilReasonType   .8+^.^| false    | optional |
+| *owns*          | boolean                   | optional |
+| *xlink:actuate* | xlink:actuateType         | optional |
+| *xlink:arcrole* | xlink:arcroleType         | optional |
+| *xlink:href*    | xlink:hrefType            | optional |
+| *xlink:role*    | xlink:roleType            | optional |
+| *xlink:show*    | xlink:showType            | optional |
+| *xlink:title*   | xlink:titleAttrType       | optional |
+| *xlink:type*    | xlink:typeType            | simple   | optional |
+
+|===
+
+==== ComplexType -- GenericFeatureType
+
+[cols="a,a,a,a",options="unnumbered"]
+|===
+h| Namespace 3+| http://www.iho.int/S129/gml/cs0/0.1
+h| Diagram   3+|
+[%unnumbered]
+image::figure-b-15.jpeg[]
+
+h| Type           3+| extensionofAbstractFeatureType
+h| Type hierarchy 3+|
+[arabic]
+. gml:AbstractGMLType
+[arabic]
+.. gml:AbstractFeatureType
+[arabic]
+... AbstractFeatureType
+[arabic]
+.... GenericFeatureType
+
+h| Model    3+| gml:boundedBy{0,1}, featureObjectIdentifier{0,1}, informationAssociation*,
+featureAssociation*, invFeatureAssociation*, ANYelementfromLOCALnamespace'NoNamespace'
+h| Children 3+| featureAssociation, featureObjectIdentifier, gml:boundedBy, informationAssociation,
+invFeatureAssociation
+
+.3+h| Attributes h| QName h| Type h| Use
+| *gml:id* | ID | required |
+2+| The attribute gml:id supports provision of a handle for the XML element representing
+a GML Object. Its use is mandatory for all GML objects. It is of XML type ID, so
+is constrained to be unique in the XML document within which it occurs.
+
+|===
+
+=== Simple Type(s)
+
+==== Simple Type --nameUsageType
+
+[cols="a,a,a,a",options="noheader,unnumbered"]
+|===
+h| Namespace   3+| http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations 3+| Classification of the type and display level of the name of a
+feature in an end-user system.
+h| Diagram     3+|
+[%unnumbered]
+image::figure-b-16.jpeg[]
+
+h| Type 3+| restrictionofxs:string
+.2+h| Facets
+| enumeration | default name display   | The name is intended to be displayed when
+the end-user system is set to the default name/text display setting.
+| enumeration | alternate name display | The name is intended to be displayed when
+the end-user system is set to an alternate name/text display setting, for example
+an alternate language.
+
+h| Usedby | Element 2+| nameUsageType
+
+|===
+
+==== Simple Type --underKeelClearancePurposeType
+
+[cols="a,a,a,a",options="noheader,unnumbered"]
+|===
+h| Namespace   3+| http://www.iho.int/S129/gml/cs0/0.1
+h| Annotations 3+| The relevant phase of a UKC passage plan
+h| Diagram     3+|
+[%unnumbered]
+image::figure-b-17.png[]
+
+h| Type 3+| restrictionofxs:string
+
+.3+h| Facets | enumeration | Pre Plan | An indicative UKC plan that identifies potential
+sailing windows for a nominated vessel draught, days, weeks or months prior to the
+planned passage through the UKCM region.
+
+| enumeration | Actual Plan | A detailed UKC plan that identifies sailing windows
+non-navigable and almost non-navigable areas, integrating live weather data, hours
+or days prior to transiting the UKCM region.
+
+| enumeration | Actual Update | A near real-time, detailed, UKC plan that identifies
+sailing windows and non-navigable and almost non-navigable areas, using live weather,
+vessel position and traffic data, while the vessel is transiting the UKCM region.
+h| Usedby | Element 2+| UnderKeelClearancePlanType/underKeelClearancePurposeType
+
+|===
+
+==== Simple Type --underKeelClearanceCalculationRequestedType
+
+[cols="a,a,a,a",options="noheader,unnumbered"]
+|===
+h| Namespace   3+| http://www.iho.int/S124/gml/cs0/0.1
+h| Annotations 3+| Indication of the aim of the UKC plan: to find the maximum safe
+vessel draught for transiting the UKCM region, or to find sailing windows for a nominated
+vessel draught
+h| Diagram     3+|
+[%unnumbered]
+image::figure-b-18.jpeg[]
+
+h| Type 3+| restrictionofxs:string
+.2+h| Facets | enumeration | Time Window | The available time window(s) for a given draught.
+| enumeration | Maximum Draught | The maximum draught for a given time window.
+h| Usedby | Element 2+| UnderKeelClearancePlanType/underKeelClearanceCalculationRequestedType
+
+|===

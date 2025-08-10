@@ -1,0 +1,374 @@
+
+== Metadata
+
+[[sec_19.1]]
+=== Introduction
+
+The S-129 UKCM metadata description is based on <<S_100,part=17>> Discovery Metadata
+for Information Exchange Catalogues, which is a profile of the ISO 19115 standard.
+These documents provide a structure for describing digital geographic data, and define
+metadata elements, a common set of metadata terminology, definitions and extension
+procedures. Detailed information is provided in <<S_100,part=17>>.
+
+Two metadata packages are described in this Product Specification: dataset metadata;
+and, exchange set metadata.
+
+.Metadata packages
+image::figure-19-1.png[]
+
+NOTE: Types with CI_, EX_, and MD++_++ prefixes are from packages defined in
+ISO 19115 and adapted by <<S_100>>. Types with S100++_++ prefix are from packages
+defined in <<S_100>>.
+
+NOTE: When a dataset is terminated, the 'purpose' metadata field is set to 3
+(terminated), and the 'editionNumber' metadata field is set to 0. All other metadata
+fields must be blank.
+
+NOTE: The implication of only updating by new edition is that, if a support file
+is terminated a new edition of the dataset is required.
+
+[[sec_19.2]]
+=== Use of <<S_421>> to provide routes in UKC plans
+
+[[figure-19-2]]
+.relationship between S-129 and <<S_421>>
+image::figure-19-2.emf[]
+
+To provide a UKCM Service, and a UKC route plan in particular, it is recommended
+that <<S_421>>, if available, be used to generate a ship's route through the UKCM
+Operational Area. <<figure-19-2>> shows the relationship between S-129 and <<S_421>>.
+
+If <<S_421>> is unavailable, alternative methods, such as RTZ route plan exchange
+format, can be used to provide or generate a ship's route information through the
+UKCM Operational Area.
+
+[[sec_19.3]]
+=== Language
+
+The language used for the metadata is English.
+
+[[sec_19.4]]
+=== Dataset metadata
+
+Dataset metadata is intended to describe information about a dataset. It facilitates
+the management and exploitation of data and is an important requirement for understanding
+the characteristics of a dataset. Whereas dataset metadata is usually fairly comprehensive,
+there is also a requirement for a constrained subset of metadata elements that are
+usually required for discovery purposes. Discovery metadata are often used for building
+web catalogues, and can help users determine whether a product or service is fit
+for purpose and where they can be obtained.
+
+.S-129 Exchange catalogue and discovery metadata
+image::figure-19-3.png[]
+
+NOTE: Types with CI, EX, and MD prefixes are from packages defined in <<ISO_19115_1_2014>>
+and <<ISO_19115_3>> and adapted by <<S_100>>. Types with S100 prefix are from packages
+defined in <<S_100>>.
+
+NOTE: When a dataset is terminated, the purpose metadata field is set to 3 (terminated),
+and the editionNumber metadata field is set to 0. All inapplicable but mandatory
+metadata fields must be nulled.
+
+[%landscape]
+<<<
+
+[[sec_19.5]]
+=== S100_ExchangeCatalogue
+
+Each exchange set has a single S100_ExchangeCatalogue which contains meta information
+for the data and support files in the exchange set.
+
+This class is inherited from S100_ExchangeCatalogue, as detailed in <<S_100,part=17,clause=17-4.5>>,
+with certain attributes and roles restricted as described below.
+
+[cols="6",options="header,unnumbered"]
+|===
+| Role Name | Name | Description | Mult | Type | Remarks
+
+| Class | S100_ExchangeCatalogue
+| An exchange catalogue contains the discovery metadata about the exchange datasets
+and support files
+| - | - | -
+
+| Attribute | identifier | Uniquely identifies this exchange catalogue | 1 | S100_ExchangeCatalogueIdentifier |
+
+| Attribute | contact | Details about the issuer of this exchange catalogue | 1 | S100_CataloguePointOfContact |
+
+| Attribute | productSpecification | Details about the Product Specifications used
+for the datasets contained in the Exchange Catalogue | 1 | S100_ProductSpecification
+| Conditional on all the datasets using the same product specification
+
+| Attribute | defaultLocale
+| Default language and character set used for all metadata records in this Exchange
+Catalogue
+| 1 | PT_Locale | Default is English and UTF-8
+
+| Attribute | otherLocale | Other languages and character sets used for the localized metadata records in this Exchange Catalogue | 0..++*++ | PT_Locale | Required if any localized entries are present in the Exchange Catalogue
+
+| Attribute | exchangeCatalogueDescription | Description of what the exchange catalogue contains | 1 | CharacterString |
+
+| Attribute | exchangeCatalogueComment | Any additional Information | 0..1 | CharacterString |
+
+| Attribute | certificates | Signed public key certificates referred to by digital signatures in the Exchange Set | 0..++*++ | S100_SE_CertificateContainer | Content defined in <<S_100,part=15>>. Allcertificates used, except the SA rootcertificate (installed separately by the implementing system) shall be included
+
+| Attribute | dataServerIdentifier | Identifies the data server for the permit | 0..1 | CharacterString |
+
+| Role | datasetDiscoveryMetadata
+| Exchange catalogues may include or reference discovery metadata for the datasets
+in the exchange set
+| 0..++*++ | Aggregation S100_DatasetDiscoveryMetadata |
+
+| Role | catalogueDiscoveryMetadata | Metadata for catalogue | 0..++*++
+| Aggregation S100_CatalogueDiscoveryMetadata
+| Metadata for the feature, portrayal, and interoperability catalogues, if any
+
+| Role | supportFileDiscoveryMetadata
+| Exchange catalogues may include or reference discovery metadata for the support
+files in the exchange set
+| 0..++*++ | Aggregation S100_SupportFileDiscoveryMetadata |
+
+|===
+
+==== S100_ExchangeCatalogueIdentifier
+
+S-129 uses S100_ExchangeCatalogueIdentifer as detailed in <<S_100,part=17,clause=17-4.5>>,
+without modification.
+
+==== S100_CataloguePointofContact
+
+S-129 uses S100_CataloguePointofContact as detailed in <<S_100,part=17,clause=17-4.5>>,
+without modification.
+
+[[sec_19.6]]
+=== S100_DatasetDiscoveryMetadata
+
+This class is inherited from S100_DatasetDiscoveryMetadata, as detailed in
+<<S_100,part=17,clause=17-4.5>>, with certain attributes and roles restricted as
+described below.
+
+[cols="6",options="header,unnumbered"]
+|===
+| Role Name | Name | Description | Mult | Type | Remarks
+
+| Class | S100_DatasetDiscoveryMetadata | Metadata about the individual datasets in the exchange catalogue | - | - | -
+
+| Attribute | fileName | Dataset file name | 1 | URI |
+
+| Attribute | description | Short description giving the area or location covered by the dataset | 0..1 | CharacterString | For example, a harbour or port name, between two named locations etc
+
+| Attribute | datasetID | Dataset ID expressed as a Marine Resource Name | 0..1 | URN | The URN must be an MRN
+
+| Attribute | compressionFlag | Indicates if the resource is compressed | 1 | Boolean | _True_ indicates a compressed dataset resource +
+_False_ indicates an uncompressed dataset resource
+| Attribute | dataProtection | Indicates if the data is encrypted | 1 | Boolean | _True_ indicates an encrypted dataset resource +
+
+_False_ indicates an unencrypted dataset resource
+
+| Attribute | protectionScheme | Specification or method used for data protection | 0..1 | S100_ProtectionScheme |
+
+| Attribute | digitalSignatureReference | Specifies the algorithm used to compute digitalSignatureValue | 1 | S100_DigitalSignatureReference (see Part 15) | Specifies the algorithm used to compute digitalSignatureValue
+| Attribute | digitalSignatureValue | Value derived from the digital signature | 1..++*++ | S100_DigitalSignatureValue | The value resulting from application of digitalSignatureReference
+| Attribute | copyright | Indicates if the dataset is copyrighted | 1 | Boolean | _True_ indicates the resource is copyrighted +
+_False_ Indicates the resource is not copyrighted
+
+| Attribute | classification | Indicates the security classification of the dataset | 0..1
+| Class MD_SecurityConstraints>MD_ClassificationCode (codelist) |
+1. unclassified +
+2. restricted +
+3. confidential +
+4. secret +
+5. top secret +
+6. sensitive but unclassified +
+7. for official use only +
+8. protected +
+9. limited distribution
+
+| Attribute | purpose | The purpose for which the dataset has been issued | 1 | S100_Purpose |
+
+| Attribute | notForNavigation | Indicates the dataset is not intended to be used for navigation | 1 | Boolean | _True_ indicates the dataset is not intended to be used for navigation +
+_False_ indicates the dataset is intended to be used for navigation
+| Attribute | specificUsage | The use for which the dataset is intended | 1 | MD_USAGE>specificUsage (character string) | For navigation through <name of UKCM Operational Area> by <ship name>.
+| Attribute | editionNumber | The Edition number of the dataset | 1 | Integer | When a dataset is initially created, the Edition number 1 is assigned to it. The Edition number is increased by 1 at each new Edition. Edition number remains the same for a re-issue
+| Attribute | updateNumber | Update number assigned to the dataset and increased by one for each subsequent update | 0..1 | Integer | Update number 0 is assigned to a new dataset
+
+| Attribute | updateApplicationDate
+| This date is only used for the base cell files (that is new dataset, re-issue and new edition), not update cell files. All updates dated on or before this date must have been applied by the producer
+| 0..1 | Date |
+
+| Attribute | referenceID | Reference back to the datasetID | 0..1 | URN | Update metadata refers to the datasetID of the dataset metadata. This is used if and only if the dataset is an updateThe URN must be an MRN
+
+| Attribute | issueDate | Date on which the data was made available by the data producer | 1 | Date |
+
+| Attribute | issueTime | Time of day at which the data was made available by the data producer | 1 | Time | The <<S_100>> datatype Time
+| Attribute | boundingBox | The extent of the dataset limits | 0..1 | EX_GeographicBoundingBox | -
+| Attribute | temporalExtent | Specification of the temporal extent of the dataset. | 1 | S100_TemporalExtent
+| The temporal extent is encoded as the date/time of the earliest and latest data
+records (in coverage datasets) or date/time ranges (in vector datasets)If there is
+more than one feature in a dataset, the earliest and latest time values of records
+in all features are used, which means the earliest and latest values may be from
+different featuresIf date/time information for a feature is not encoded in the dataset,
+it is treated for the purposes of this attribute as extending indefinitely in the
+appropriate direction on the time axis, limited by the issue date/time or the cancellation
+or supersession of the datasetThis attribute is encoded if and only if at least one
+of the start and end of the temporal extent is known
+
+| Attribute | productSpecification | The product specification used to create this dataset | 1 | S100_ProductSpecification |
+
+| Attribute | producingAgency | Agency responsible for producing the data | 1 | CI_Responsibility>CI_Organisation | See <<S_100,table=17-3>>, Ed. 5.0.0
+
+| Attribute | producerCode | The official IHO Producer Code from <<S_62>> | 0..1 | CharacterString |
+
+| Attribute | encodingFormat | The encoding format of the dataset | 1 | S100_EncodingFormat | Must be GML
+
+| Attribute | dataCoverage | Provides information about data coverages within the dataset | 1..++*++ | S100_DataCoverage |
+
+| Attribute | comment | Any additional information | 0..1 | CharacterString |
+
+| Attribute | defaultLocale | Default language and character set used in the dataset | 1 | PT_Locale | In absence of defaultLocale the language is English, UTF-8
+
+| Attribute | otherLocale | Other languages and character sets used in the dataset | 0..++*++ | PT_Locale |
+
+| Attribute | metadataPointOfContact | Point of contact for metadata | 0..1 | CI_Responsibility>CI_Individual orCI_Responsibility>CI_Organisation | Only if metadataPointOfContact is different to producingAgency
+| Attribute | metadataDateStamp | Date stamp for metadata | 1 | Date | May or may not be the issue date
+
+| Attribute | replacedData | If a data file is cancelled is it replaced by another data file | 0..1 | Boolean |
+
+| Attribute | dataReplacement | Cell name | 0..++*++ | CharacterString | A dataset may be replaced by 1 or more datasets
+| Attribute | navigationPurpose
+| Classification of intended navigation purpose (for Catalogue indexing purposes)
+| 0..3 | S100_NavigationPurpose | If Product Specification is intended for creation of navigational products this attribute should be mandatory
+| Role | resourceMaintenance | Information about the frequency of resource updates, and the scope of those updates | 0..1 | MD_MaintenanceInformation | <<S_100>> restricts the multiplicity to 0..1 and adds specific restrictions on the ISO 19115 structure and content. See clause MD_MaintenanceInformation later in this PartFormat: PnYnMnDTnHnMnS (XML builtin type for ISO 8601 duration). See clause 17-4.9
+
+|===
+
+==== S100_DataCoverage
+
+S-129 uses S100++_++ DataCoverage as detailed in <<S_100,part=17,clause=17-4.5>>,
+without modification.
+
+==== S100_NavigationPurpose
+
+S-129 uses S100_NavigationPurpose enumeration as detailed in <<S_100,part=17,clause=17-4.5>>,
+without modification.
+
+==== S100_Purpose
+
+S-129 uses S100_Purpose as detailed in <<S_100,part=17,clause=17-4.5>>, without modification.
+
+==== S100_TemporalExtent
+
+S-129 uses S100_TemporalExtent as detailed in <<S_100,part=17,clause=17-4.5>>, without
+modification.
+
+==== S100_EncodingFormat
+
+S-129 uses S100_EncodingFormat with a restriction on the allowed values to permit
+only the <<S_100>> GML format for S-129 datasets.
+
+[cols="5",options="header,unnumbered"]
+|===
+| Role Name | Name | Description | Code | Remarks
+
+| Enumeration | S100_EncodingFormat | The encoding format                        | - |
+Only value permitted in S-129 is GML, therefore the rest are removed.
+| Value       | GML                 | The GML data format as defined in Part 10b |   | -
+|===
+
+==== S100_ProductSpecification
+
+This class is inherited from S100_ProductSpecification, as detailed in <<S_100,part=17,clause=17-4.5>>, with certain attributes and roles restricted as described below.
+
+[cols="6",options="header,unnumbered"]
+|===
+| Role Name | Name | Description | Mult | Type | Remarks
+
+| Class | S100_ProductSpecification | The Product Specification contains the information needed to build the specified product | - | - | -
+| Attribute | name | The name of the product specification used to create the datasets | 1 | CharacterString | 129
+| Attribute | version | The version number of the product specification | 1 | CharacterString | 1.1.0
+| Attribute | date | The version date of the product specification | 1 | Date | CCYYMMDD
+| Attribute | productIdentifer | Machine readable unique identifier of a product type | 1 | CharacterString(Restricted to Product ID values from the IHO Product Specification Register, in the IHO Geospatial Information Registry) | "S-129"
+| Attribute | number | The number (registry index) used to lookup the product in the product specification GI registry | 1 | Integer | From the Product Specification Register in the IHO Geospatial Information Registry
+| Attribute | compliancyCategory | The level of compliance of the Product Specification to <<S_100>> | 0..1 | S100_CompliancyCategory | See <<S_100,part=4a,clause=4a-5.5>>
+
+|===
+
+==== S100_CompliancyCategory
+
+S-129 uses S100_ComliancyCategory enumeration as detailed in <<S_100,part=17,clause=17-4.5>>,
+without modification.
+
+==== S100_ProtectionScheme
+
+S-129 uses S100_ProtectionScheme enumeration as detailed in <<S_100,part=17,clause=17-4.5>>,
+without modification.
+
+[[sec_19.7]]
+=== S100_SupportFileDiscoveryMetadata
+
+S-129 uses S100_SupportFileDiscoveryMetadata as detailed in <<S_100,part=17,clause=17-4.5>>,
+without modification.
+
+==== S100_SupportFileFormat
+
+S-129 uses S100_SupportFileFormat enumeration as detailed in <<S_100,part=17,clause=17-4.5>>,
+without modification.
+
+==== S100_SupportFileRevisionStatus
+
+S-129 uses S100_SupportFileRevisionStatus enumeration as detailed in <<S_100,part=17,clause=17-4.5>>, without modification.
+
+==== S100_SupportFileSpecification
+
+S-129 uses S100_SupportFileSpecification as detailed in <<S_100,part=17,clause=17-4.5>>,
+without modification.
+
+==== S100_ResourcePurpose
+
+S-129 uses S100_ResourcePurpose enumeration as detailed in <<S_100,part=17,clause=17-4.5>>,
+without modification.
+
+[[sec_19.8]]
+=== S100_CatalogueDiscoveryMetadata
+
+This class is inherited from S100_CatalogueDiscoveryMetadata, as detailed in <<S_100,part=17,clause=17-4.5>>, with certain attributes and roles restricted as described below.
+
+[cols="6",options="header,unnumbered"]
+|===
+| Role Name | Name | Description | Mult | Type | Remarks
+
+| Class | S100_CatalogueDiscoveryMetadata | Class for <<S_100>> catalogue metadata. | - | - | -
+
+| Attribute | fileName | The name for the catalogue | 1 | URI |
+
+| Attribute | purpose | The purpose for which the Catalogue has been issued | 0..1 | S100_Purpose(codelist) | The values must be one of the following:_2_ new edition__5__ cancellationDefault is new edition
+
+| Attribute | editionNumber | The Edition number of the Catalogue | 1 | Integer
+| Initially set to 1 for a given productSpecification.numberIncreased by 1 for each subsequent newEditionUniquely identifies the version of the Catalogue
+
+| Attribute | scope | Subject domain of the catalogue | 1 | S100_CatalogueScope |
+
+| Attribute | versionNumber | The version number of the product specification | 1 | CharacterString | Human readable version identifier
+
+| Attribute | issueDate | The version date of the product specification | 1 | Date |
+
+| Attribute | productSpecification | The product specification used to create this file | 1 | S100_ProductSpecification |
+
+| Attribute | digitalSignatureReference | Specifies the algorithm used to compute digitalSignatureValue | 1 | S100_DigitalSignatureReference(see Part 15) |
+
+| Attribute | digitalSignatureValue | Value derived from the digital signature | 1..++*++ | S100_DigitalSignatureValue(see Part 15) | The value resulting from application of digitalSignatureReferenceImplemented as the digital signature format specified in Part 15
+| Attribute | compressionFlag | Indicates if the resource is compressed | 1 | Boolean | _True_ indicates a compressed resource +
+_False_ indicates an uncompressed resource
+
+| Attribute | defaultLocale | Default language and character set used in the Catalogue | 1 | PT_Locale | In absence of defaultLocale the language is English in UTF-8
+
+| Attribute | otherLocale | Other languages and character sets used in thecatalogue | 0..++*++ | PT_Locale |
+
+|===
+
+==== S100_CatalogueScope
+
+S-129 uses S100_CatalogueScope enumeration as detailed in <<S_100,part=17,clause=17-4.5>>,
+without modifications.
+
+[%portrait]
+<<<

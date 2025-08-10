@@ -1,0 +1,9 @@
+
+== Dataset Types
+
+UKCM datasets consists of a UKC plan, UKC plan area, control points and areas considered
+non-navigable and almost non-navigable. The datasets are generally intended for use
+with <<S_101>> ENC, and (optionally) with <<S_102>> (Bathymetric Surface), <<S_104>>
+(Water Level Information for Surface Navigation), or <<S_111>> (Surface Currents)
+datasets. Dataset content will change over time during a ship's transit. Updating
+of datasets is achieved by replacement.

@@ -1,0 +1,13 @@
+
+[[annex-e]]
+[appendix,obligation="informative"]
+== Data Validation Checks
+
+The validation checks specific to S-129 Under Keel Clearance Management datasets
+are included in IHO Publication S-158:129. This document specifies the minimum checks
+that producers of S-129 ENC validation tools should include in their validation software.
+Validation software must be used by S-129 data producers to ensure that their S-129
+datasets are compliant with the S-129 Under Keel Clearance Management Product Specification.
+
+The S-158:129 S-129 Validation Checks can be found in the Standards and Publications
+page of the IHO web site, http://www.iho.int/[www.iho.int].
